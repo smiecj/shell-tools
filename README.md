@@ -15,6 +15,20 @@ install conda & python3
 make python3
 ```
 
+### nodejs
+
+install nodejs (default version: v16)
+
+```
+make nodejs
+```
+
+install with version
+
+```
+make nodejs_version=... nodejs
+```
+
 ### java
 
 ## component

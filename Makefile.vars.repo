@@ -7,6 +7,10 @@ github_repo := https://github.com
 # python
 pip_repo := https://pypi.org/simple
 
+# nodejs
+nodejs_repo=https://nodejs.org/dist
+npm_mirror=https://registry.npmjs.org
+
 # other common var
 modules_home := /opt/modules
 
@@ -17,4 +21,9 @@ github_repo = https://download.fastgit.org
 
 # python
 pip_repo := https://pypi.mirrors.ustc.edu.cn/simple
+
+# nodejs
+nodejs_repo=https://mirrors.tuna.tsinghua.edu.cn/nodejs-release
+npm_mirror=https://registry.npmmirror.com
+
 endif

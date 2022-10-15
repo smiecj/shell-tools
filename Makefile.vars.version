@@ -1,0 +1,5 @@
+# python
+conda_forge_version=4.13.0-1
+
+# nodejs
+nodejs_version=v16.15.1

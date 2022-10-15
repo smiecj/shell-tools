@@ -1,5 +1,6 @@
 ROOT := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
-include $(ROOT)/Makefile.vars
+include $(ROOT)/Makefile.vars.repo
+include $(ROOT)/Makefile.vars.version
 export
 
 hello:
@@ -7,3 +8,6 @@ hello:
 
 python3:
 	bash ./dev/install-python.sh
+
+nodejs:
+	bash ./dev/install-nodejs.sh

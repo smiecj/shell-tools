@@ -1,11 +1,10 @@
 #!/bin/bash
-set -euxo pipefail
+set -exo pipefail
 
 script_full_path=$(realpath $0)
 home_path=$(dirname $script_full_path)
 pushd $home_path
 
-repo_home=/opt/repo
 npm_home=/usr/nodejs
 npm_repo_home=${repo_home}/nodejs
 

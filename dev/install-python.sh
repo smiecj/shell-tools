@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euxo pipefail
+set -exo pipefail
 
 script_full_path=$(realpath $0)
 home_path=$(dirname $script_full_path)
@@ -22,16 +22,20 @@ if [ -n "${conda_has_installed}" ]; then
     exit 0
 fi
 
+# install basic
+${INSTALLER} -y install curl
+
 ## download conda
 arch=`uname -p` && \
 conda_install_script=miniforge_install.sh && \
 conda_forge_download_url=${miniforge_url}/${conda_forge_version}/Miniforge3-${conda_forge_version}-Linux-${arch}.sh && \
 echo "miniforge download url: $conda_forge_download_url" && \
 curl -L $conda_forge_download_url -o ${conda_install_script} && \
+rm -r ${miniconda_install_path} && \
 bash $conda_install_script -b -p ${miniconda_install_path} && rm -f ${conda_install_script}
 
 ## conda repo
-cp ./conda/condarc ${HOME}/.condarc
+cp ./conda/${condarc_file} ${HOME}/.condarc
 
 ## create default python env
 ${miniconda_install_path}/bin/conda create -y --name ${conda_env_name_python3} python=${python3_version}

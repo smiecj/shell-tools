@@ -3,11 +3,9 @@ some shell for install and manage components
 
 most shell come from [docker-centos](https://github.com/smiecj/docker-centos)
 
-## basic env
+[中文](https://github.com/smiecj/shell-tools/blob/main/README_zh.md)
 
-## develop env
-
-### python
+## python
 
 install conda & python3
 
@@ -15,20 +13,26 @@ install conda & python3
 make python3
 ```
 
-### nodejs
+## nodejs
 
-install nodejs (default version: v16)
+install nodejs
 
 ```
 make nodejs
 ```
 
-install with version
+## java
+
+install java (1.8 & 17)
 
 ```
-make nodejs_version=... nodejs
+make java
 ```
 
-### java
+## golang
 
-## component
+install golang
+
+```
+make golang
+```

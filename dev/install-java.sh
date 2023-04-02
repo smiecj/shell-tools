@@ -5,7 +5,6 @@ script_full_path=$(realpath $0)
 home_path=$(dirname $script_full_path)
 pushd $home_path
 
-java_home=/usr/java
 java_repo_home=${repo_home}/java
 
 arch=`uname -p`
@@ -53,7 +52,7 @@ default_maven_repo_path=${default_maven_repo_home}/repository && \
 
 ## vscode maven plugin will use default user ~/.m2 path as repo home
 ## https://github.com/microsoft/vscode-maven/issues/46#issuecomment-500271983
-cd ~ && rm -rf ${default_maven_repo_path} && mkdir -p ${maven_repo} && mkdir -p ${default_maven_repo_home} && ln -s ${maven_repo} ${default_maven_repo_path} && \
+cd ~ && rm -rf ${default_maven_repo_path} && mkdir -p ${maven_local_repo} && mkdir -p ${default_maven_repo_home} && ln -s ${maven_local_repo} ${default_maven_repo_path} && \
 cd ~ && rm -f ${default_maven_repo_home}/settings.xml && ln -s ${maven_setting} ${default_maven_repo_home}/settings.xml
 
 # gradle

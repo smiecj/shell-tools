@@ -24,6 +24,7 @@ condarc_file = condarc
 pip_repo = https://pypi.org/simple
 
 # java
+java_home = /usr/java
 jdk_repo = https://mirrors.tuna.tsinghua.edu.cn/Adoptium
 
 # nodejs
@@ -33,6 +34,10 @@ npm_mirror=https://registry.npmjs.org
 # golang
 go_pkg_repo = https://go.dev/dl
 go_proxy = https://proxy.golang.org,direct
+
+# gcc
+gcc_repo = http://ftp.gnu.org/gnu/gcc
+glibc_repo = http://ftp.gnu.org/gnu/glibc
 
 # other common var
 
@@ -64,5 +69,9 @@ npm_mirror=https://registry.npmmirror.com
 # golang
 go_pkg_repo = https://mirrors.aliyun.com/golang
 go_proxy = https://goproxy.cn,direct
+
+# gcc
+gcc_repo = https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc
+glibc_repo = https://mirrors.tuna.tsinghua.edu.cn/gnu/glibc
 
 endif

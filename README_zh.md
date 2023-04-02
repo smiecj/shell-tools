@@ -3,6 +3,14 @@
 
 大部分脚本逻辑来自 [docker-centos](https://github.com/smiecj/docker-centos)
 
+## zsh
+
+安装 zsh
+
+```
+make zsh
+```
+
 ## python
 
 安装 conda & python3
@@ -27,6 +35,18 @@ make nodejs
 make java
 ```
 
+安装 java 17
+
+```
+make java-new
+```
+
+安装 maven
+
+```
+make maven
+```
+
 ## golang
 
 安装 golang
@@ -34,3 +54,7 @@ make java
 ```
 make golang
 ```
+
+## 待完成
+
+- clickhouse 支持配置多用户的 profile

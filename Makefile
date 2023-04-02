@@ -15,6 +15,12 @@ zsh:
 java:
 	bash ./dev/install-java.sh
 
+java-new:
+	bash ./dev/install-java-new.sh
+
+maven:
+	bash ./dev/install-maven.sh
+
 python3:
 	bash ./dev/install-python.sh
 
@@ -23,3 +29,12 @@ golang:
 
 nodejs:
 	bash ./dev/install-nodejs.sh
+
+gcc:
+	bash ./dev/install-gcc.sh
+
+glibc:
+	bash ./dev/install-glibc.sh
+
+cmake:
+	bash ./dev/install-cmake.sh

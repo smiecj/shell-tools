@@ -11,7 +11,6 @@ python3_env_key_home="PYTHON3_HOME"
 python3_lib_key_home="PYTHON3_LIB_HOME"
 
 conda_env_name_python3=py3
-python3_version=3.8
 
 miniforge_url="${github_url}/conda-forge/miniforge/releases/download"
 
@@ -31,7 +30,7 @@ conda_install_script=miniforge_install.sh && \
 conda_forge_download_url=${miniforge_url}/${conda_forge_version}/Miniforge3-${conda_forge_version}-Linux-${arch}.sh && \
 echo "miniforge download url: $conda_forge_download_url" && \
 curl -L $conda_forge_download_url -o ${conda_install_script} && \
-rm -r ${miniconda_install_path} && \
+rm -rf ${miniconda_install_path} && \
 bash $conda_install_script -b -p ${miniconda_install_path} && rm -f ${conda_install_script}
 
 ## conda repo

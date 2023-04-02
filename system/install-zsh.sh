@@ -2,7 +2,13 @@
 set -exo pipefail
 
 source /etc/profile
-rm -rf /root/.oh-my-zsh
+
+if [ -f ${HOME}/.oh-my-zsh ]; then
+    echo "zsh has installed"
+    exit 0
+fi
+
+rm -rf ${HOME}/.oh-my-zsh
 
 ${INSTALLER} -y install git
 

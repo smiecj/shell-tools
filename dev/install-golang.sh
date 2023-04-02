@@ -17,7 +17,7 @@ elif [ "aarch64" == "${arch}" ]; then
     arch="arm64"
 fi
 
-mkdir -p ${go_home} && mkdir -p ${go_repo_home}
+rm -rf ${go_home} && mkdir -p ${go_home} && mkdir -p ${go_repo_home}
 go_pkg=go${go_version}.linux-${arch}.tar.gz
 go_pkg_download_url=${go_pkg_repo}/${go_pkg}
 cd ${go_home} && curl -LO ${go_pkg_download_url} && tar -xzvf ${go_pkg} && rm ${go_pkg} && \

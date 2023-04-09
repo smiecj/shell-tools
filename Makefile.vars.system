@@ -1,0 +1,6 @@
+OS = $(if $(wildcard /etc/redhat-release),"redhat","ubuntu")
+ifeq ($(OS),"redhat")
+    INSTALLER = yum
+else
+    INSTALLER = apt
+endif

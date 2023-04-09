@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euxo pipefail
+set -exo pipefail
 
 script_full_path=$(realpath $0)
 home_path=$(dirname $script_full_path)
@@ -11,28 +11,30 @@ python3_env_key_home="PYTHON3_HOME"
 python3_lib_key_home="PYTHON3_LIB_HOME"
 
 conda_env_name_python3=py3
-python3_version=3.8
 
 miniforge_url="${github_url}/conda-forge/miniforge/releases/download"
 
-## if conda already install, skip it
+# installed check
 conda_has_installed=`conda -V || true`
 if [ -n "${conda_has_installed}" ]; then
     echo "conda has installed!"
     exit 0
 fi
 
+# install basic
+${INSTALLER} -y install curl
+
 ## download conda
-conda_forge_version=4.13.0-1
 arch=`uname -p` && \
 conda_install_script=miniforge_install.sh && \
 conda_forge_download_url=${miniforge_url}/${conda_forge_version}/Miniforge3-${conda_forge_version}-Linux-${arch}.sh && \
 echo "miniforge download url: $conda_forge_download_url" && \
 curl -L $conda_forge_download_url -o ${conda_install_script} && \
+rm -rf ${miniconda_install_path} && \
 bash $conda_install_script -b -p ${miniconda_install_path} && rm -f ${conda_install_script}
 
 ## conda repo
-cp ./conda/condarc ${HOME}/.condarc
+cp ./conda/${condarc_file} ${HOME}/.condarc
 
 ## create default python env
 ${miniconda_install_path}/bin/conda create -y --name ${conda_env_name_python3} python=${python3_version}
@@ -43,7 +45,7 @@ python3_home_path=${miniconda_install_path}/envs/${conda_env_name_python3}
 python3_lib_path=${miniconda_install_path}/envs/${conda_env_name_python3}/lib/python${python3_version}/site-packages
 ### clean mark
 conda_mark="# conda"
-sed -i "s/.*${conda_mark}.*\n//g" /etc/profile
+sed -i "s/.*${conda_mark}.*//g" /etc/profile
 echo -e "\n# conda & python" >> /etc/profile
 echo "export $conda_env_key_home=$miniconda_install_path ${conda_mark}" >> /etc/profile
 echo "export $python3_env_key_home=$python3_home_path ${conda_mark}" >> /etc/profile

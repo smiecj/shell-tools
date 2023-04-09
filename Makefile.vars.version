@@ -1,0 +1,28 @@
+# zsh
+zsh_branch ?= 5.9
+
+# python
+conda_forge_version ?= 4.13.0-1
+python3_version ?= 3.9
+
+# nodejs
+nodejs_version ?= v16.15.1
+
+# golang
+go_version ?= 1.19.3
+
+# java
+jdk_old_version ?= 8
+jdk_new_version ?= 17
+
+maven_short_version=3.8
+gradle_version ?= 7.0.2
+ant_version ?= 1.10.12
+
+# gcc
+gcc_version ?= 5.5.0
+glibc_version ?= 2.18
+
+# cmake
+cmake_long_version ?= 3.0.2
+cmake_short_version = $(shell echo ${cmake_long_version} | sed 's/\.[0-9]$$//g' )

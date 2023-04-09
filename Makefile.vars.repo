@@ -1,0 +1,77 @@
+NET ?= WORLD
+
+repo_home = /opt/repo
+modules_home = /opt/modules
+
+# apache
+apache_repo = https://downloads.apache.org
+
+# git
+github_url = https://github.com
+github_repo = https://github.com
+
+# zsh
+zsh_repo = https://github.com/smiecj/zsh
+zsh_ohmyzsh_repo = https://github.com/ohmyzsh/ohmyzsh
+zsh_autosuggestion_repo = https://github.com/zsh-users/zsh-autosuggestions
+zsh_syntax_highlighting_repo = https://github.com/zsh-users/zsh-syntax-highlighting
+zsh_powerlevel10k_repo = https://github.com/smiecj/powerlevel10k
+
+# conda
+condarc_file = condarc
+
+# python
+pip_repo = https://pypi.org/simple
+
+# java
+java_home = /usr/java
+jdk_repo = https://mirrors.tuna.tsinghua.edu.cn/Adoptium
+
+# nodejs
+nodejs_repo=https://nodejs.org/dist
+npm_mirror=https://registry.npmjs.org
+
+# golang
+go_pkg_repo = https://go.dev/dl
+go_proxy = https://proxy.golang.org,direct
+
+# gcc
+gcc_repo = http://ftp.gnu.org/gnu/gcc
+glibc_repo = http://ftp.gnu.org/gnu/glibc
+
+# other common var
+
+ifeq "${NET}" "CN"
+# git
+github_url = https://hub.fastgit.xyz
+github_repo = https://download.fastgit.org
+
+# apache
+apache_repo = https://mirrors.tuna.tsinghua.edu.cn/apache
+
+# zsh
+zsh_repo = https://gitee.com/atamagaii/zsh
+zsh_ohmyzsh_repo = https://gitee.com/atamagaii/ohmyzsh
+zsh_autosuggestion_repo = https://gitee.com/atamagaii/zsh-autosuggestions
+zsh_syntax_highlighting_repo = https://gitee.com/atamagaii/zsh-syntax-highlighting.git
+zsh_powerlevel10k_repo = https://gitee.com/atamagaii/powerlevel10k
+
+# conda
+condarc_file = condarc
+
+# python
+pip_repo = https://mirrors.aliyun.com/pypi/simple
+
+# nodejs
+nodejs_repo=https://mirrors.tuna.tsinghua.edu.cn/nodejs-release
+npm_mirror=https://registry.npmmirror.com
+
+# golang
+go_pkg_repo = https://mirrors.aliyun.com/golang
+go_proxy = https://goproxy.cn,direct
+
+# gcc
+gcc_repo = https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc
+glibc_repo = https://mirrors.tuna.tsinghua.edu.cn/gnu/glibc
+
+endif

@@ -12,6 +12,9 @@ hello:
 zsh:
 	bash ./system/install-zsh.sh
 
+lvim:
+	bash ./system/install-lvim.sh
+
 java:
 	bash ./dev/install-java.sh
 
@@ -29,6 +32,9 @@ golang:
 
 nodejs:
 	bash ./dev/install-nodejs.sh
+
+rust:
+	bash ./dev/install-rust.sh
 
 gcc:
 	bash ./dev/install-gcc.sh

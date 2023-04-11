@@ -21,7 +21,9 @@ ${INSTALLER} -y install autoconf gcc
 ${INSTALLER} -y install ncurses-devel || true
 ${INSTALLER} -y install ncurses-dev || true
 ./Util/preconfig
-./configure --prefix=/usr
+# with-tcsetpgrp: fix configure: error: no controlling tty
+## https://github.com/habitat-sh/core-plans/issues/2632
+./configure --prefix=/usr --with-tcsetpgrp
 make && make install.bin && make install.modules && make install.fns
 popd
 rm -r zsh

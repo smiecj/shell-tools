@@ -56,3 +56,19 @@ install golang
 ```
 make golang
 ```
+
+## rust
+
+install rust
+
+```
+make rust
+```
+
+## lvim
+
+install neovim & lvim & cargo
+
+```
+make lvim
+```

@@ -55,6 +55,18 @@ make maven
 make golang
 ```
 
-## 待完成
+## rust
 
-- clickhouse 支持配置多用户的 profile
+安装 rust
+
+```
+make rust
+```
+
+## lvim
+
+安装 neovim 、 lvim 、 cargo
+
+```
+make lvim
+```

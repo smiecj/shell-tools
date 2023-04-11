@@ -35,16 +35,23 @@ npm_mirror=https://registry.npmjs.org
 go_pkg_repo = https://go.dev/dl
 go_proxy = https://proxy.golang.org,direct
 
+# rust & cargo
+RUSTUP_DIST_SERVER = 
+RUSTUP_UPDATE_ROOT =
+rust_init_script = https://sh.rustup.rs
+cargo_config = 
+
 # gcc
 gcc_repo = http://ftp.gnu.org/gnu/gcc
 glibc_repo = http://ftp.gnu.org/gnu/glibc
+
 
 # other common var
 
 ifeq "${NET}" "CN"
 # git
-github_url = https://hub.fastgit.xyz
-github_repo = https://download.fastgit.org
+github_url = https://ghproxy.com/https://github.com
+github_repo = https://ghproxy.com/https://github.com
 
 # apache
 apache_repo = https://mirrors.tuna.tsinghua.edu.cn/apache
@@ -69,6 +76,12 @@ npm_mirror=https://registry.npmmirror.com
 # golang
 go_pkg_repo = https://mirrors.aliyun.com/golang
 go_proxy = https://goproxy.cn,direct
+
+# rust
+RUSTUP_DIST_SERVER = https://mirrors.ustc.edu.cn/rust-static
+RUSTUP_UPDATE_ROOT = https://mirrors.ustc.edu.cn/rust-static/rustup
+rust_init_script = https://rsproxy.cn/rustup-init.sh
+cargo_config = config_ustc
 
 # gcc
 gcc_repo = https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc

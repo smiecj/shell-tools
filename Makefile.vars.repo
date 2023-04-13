@@ -57,11 +57,11 @@ github_repo = https://ghproxy.com/https://github.com
 apache_repo = https://mirrors.tuna.tsinghua.edu.cn/apache
 
 # zsh
-zsh_repo = https://gitee.com/atamagaii/zsh
-zsh_ohmyzsh_repo = https://gitee.com/atamagaii/ohmyzsh
-zsh_autosuggestion_repo = https://gitee.com/atamagaii/zsh-autosuggestions
-zsh_syntax_highlighting_repo = https://gitee.com/atamagaii/zsh-syntax-highlighting.git
-zsh_powerlevel10k_repo = https://gitee.com/atamagaii/powerlevel10k
+zsh_repo = https://ghproxy.com/https://github.com/smiecj/zsh
+zsh_ohmyzsh_repo = https://ghproxy.com/https://github.com/ohmyzsh/ohmyzsh
+zsh_autosuggestion_repo = https://ghproxy.com/https://github.com/zsh-users/zsh-autosuggestions
+zsh_syntax_highlighting_repo = https://ghproxy.com/https://github.com/zsh-users/zsh-syntax-highlighting
+zsh_powerlevel10k_repo = https://ghproxy.com/https://github.com/smiecj/powerlevel10k
 
 # conda
 condarc_file = condarc

@@ -44,3 +44,9 @@ glibc:
 
 cmake:
 	bash ./dev/install-cmake.sh
+
+make:
+	bash ./dev/install-make.sh
+
+code-server:
+	bash ./backend/install-code-server.sh

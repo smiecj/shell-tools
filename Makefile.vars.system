@@ -4,3 +4,5 @@ ifeq ($(OS),"redhat")
 else
     INSTALLER = apt
 endif
+
+prefix ?= /usr/local

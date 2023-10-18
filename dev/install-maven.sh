@@ -16,6 +16,7 @@ fi
 # maven
 maven_version_tag=`echo ${maven_short_version} | sed 's#\..*##g'`
 maven_version=`curl -L ${apache_repo}/maven/maven-${maven_version_tag} | grep ">${maven_short_version}" | sed 's#.*href="##g' | sed "s#/.*##g"`
+echo "[test] maven version: $maven_version"
 
 maven_pkg=apache-maven-${maven_version}-bin.tar.gz && \
 maven_download_url=${apache_repo}/maven/maven-3/${maven_version}/binaries/${maven_pkg} && \

@@ -6,7 +6,7 @@ conda_forge_version ?= 4.13.0-1
 python3_version ?= 3.9
 
 # nodejs
-nodejs_version ?= v16.15.1
+nodejs_version ?= v18.18.2
 
 # golang
 go_version ?= 1.19.3
@@ -24,5 +24,11 @@ gcc_version ?= 5.5.0
 glibc_version ?= 2.18
 
 # cmake
-cmake_long_version ?= 3.0.2
+cmake_long_version ?= 3.5.0
 cmake_short_version = $(shell echo ${cmake_long_version} | sed 's/\.[0-9]$$//g' )
+
+# make
+make_version ?= 4.3
+
+# code server
+code_server_version ?= 4.14.1

@@ -9,8 +9,8 @@ curl -LO ${gcc_repo}/gcc-${gcc_version}/${gcc_pkg}
 tar -xvf gcc-${gcc_version}.tar.gz
 pushd ${gcc_folder}
 ./contrib/download_prerequisites
-mkdir build
-pushd build && ../configure -prefix=/usr/local --enable-checking=release --enable-languages=c,c++ --disable-multilib && make && make install && popd
+mkdir -p build
+pushd build && ../configure -prefix=${prefix} --enable-checking=release --enable-languages=c,c++ --disable-multilib && make && make install && popd
 popd
 
 rm -rf ${gcc_folder} && rm -f ${gcc_pkg}

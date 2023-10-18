@@ -1,9 +1,25 @@
 # shell tools
-some shell for install and manage components
+some shell for install and manage components conveniently
 
 most shell come from [docker-centos](https://github.com/smiecj/docker-centos)
 
 [中文](https://github.com/smiecj/shell-tools/blob/main/README_zh.md)
+
+## gcc, glibc, cmake & make
+
+```
+# gcc
+make gcc
+
+# glibc
+make glibc
+
+# cmake
+make cmake
+
+# make
+make make
+```
 
 ## zsh
 
@@ -63,6 +79,12 @@ install rust
 
 ```
 make rust
+```
+
+## [code server](https://github.com/coder/code-server)
+
+```
+make code-server
 ```
 
 ## lvim

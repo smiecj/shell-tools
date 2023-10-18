@@ -1,7 +1,23 @@
 # shell tools
-脚本工具，用于安装基础环境、基础组件等
+脚本工具，用于更方便地安装基础环境、基础组件等
 
 大部分脚本逻辑来自 [docker-centos](https://github.com/smiecj/docker-centos)
+
+## gcc, glibc, cmake 和 make
+
+```
+# gcc
+make gcc
+
+# glibc
+make glibc
+
+# cmake
+make cmake
+
+# make
+make make
+```
 
 ## zsh
 
@@ -61,6 +77,12 @@ make golang
 
 ```
 make rust
+```
+
+## [code server](https://github.com/coder/code-server)
+
+```
+make code-server
 ```
 
 ## lvim

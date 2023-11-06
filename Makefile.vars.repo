@@ -26,6 +26,7 @@ pip_repo = https://pypi.org/simple
 # java
 java_home = /usr/java
 jdk_repo = https://mirrors.tuna.tsinghua.edu.cn/Adoptium
+gradle_repo = https://downloads.gradle.org
 
 # nodejs
 nodejs_repo=https://nodejs.org/dist
@@ -51,24 +52,27 @@ make_repo = http://ftp.gnu.org/gnu/make
 
 ifeq "${NET}" "CN"
 # git
-github_url = https://ghproxy.com/https://github.com
-github_repo = https://ghproxy.com/https://github.com
+github_url = https://gh-proxy.com/https://github.com
+github_repo = https://gh-proxy.com/https://github.com
 
 # apache
 apache_repo = https://mirrors.tuna.tsinghua.edu.cn/apache
 
 # zsh
-zsh_repo = https://ghproxy.com/https://github.com/smiecj/zsh
-zsh_ohmyzsh_repo = https://ghproxy.com/https://github.com/ohmyzsh/ohmyzsh
-zsh_autosuggestion_repo = https://ghproxy.com/https://github.com/zsh-users/zsh-autosuggestions
-zsh_syntax_highlighting_repo = https://ghproxy.com/https://github.com/zsh-users/zsh-syntax-highlighting
-zsh_powerlevel10k_repo = https://ghproxy.com/https://github.com/smiecj/powerlevel10k
+zsh_repo = https://gh-proxy.com/https://github.com/smiecj/zsh
+zsh_ohmyzsh_repo = https://gh-proxy.com/https://github.com/ohmyzsh/ohmyzsh
+zsh_autosuggestion_repo = https://gh-proxy.com/https://github.com/zsh-users/zsh-autosuggestions
+zsh_syntax_highlighting_repo = https://gh-proxy.com/https://github.com/zsh-users/zsh-syntax-highlighting
+zsh_powerlevel10k_repo = https://gh-proxy.com/https://github.com/smiecj/powerlevel10k
 
 # conda
 condarc_file = condarc
 
 # python
 pip_repo = https://mirrors.aliyun.com/pypi/simple
+
+# java
+gradle_repo = https://mirrors.huaweicloud.com/gradle
 
 # nodejs
 nodejs_repo=https://mirrors.tuna.tsinghua.edu.cn/nodejs-release

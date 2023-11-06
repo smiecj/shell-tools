@@ -1,8 +1,6 @@
 #!/bin/bash
 set -exo pipefail
 
-source /etc/profile
-
 if [ -f ${HOME}/.oh-my-zsh ]; then
     echo "zsh has installed"
     exit 0

@@ -1,5 +1,5 @@
 #!/bin/bash
-set -exo pipefail
+# set -exo pipefail
 
 script_full_path=$(realpath $0)
 home_path=$(dirname $script_full_path)
@@ -21,7 +21,8 @@ if [ "x86_64" == "${system_arch}" ]; then arch="x64"; else arch="arm64"; fi
 npm_folder=node-${nodejs_version}-linux-${arch}
 npm_pkg=${npm_folder}.tar.gz
 npm_download_url=${nodejs_repo}/${nodejs_version}/${npm_pkg}
-rm -r ${npm_home} && mkdir -p ${npm_home} && mkdir -p ${npm_repo_home}
+rm -r ${npm_home}
+mkdir -p ${npm_home} && mkdir -p ${npm_repo_home}
 cd ${npm_home} && curl -LO ${npm_download_url} && tar -xzvf ${npm_pkg} && rm -f ${npm_pkg}
 mv ${npm_folder}/* ./ && rm -r ${npm_folder}
 

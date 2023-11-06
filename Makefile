@@ -49,4 +49,4 @@ make:
 	bash ./dev/install-make.sh
 
 code-server:
-	bash ./backend/install-code-server.sh
+	bash ./backend/code-server/install-code-server.sh

@@ -17,7 +17,8 @@ jdk_new_version ?= 17
 
 maven_short_version=3.8
 gradle_version ?= 7.0.2
-ant_version ?= 1.10.12
+ant_short_version ?= 1.10
+# ant_version ?= 1.10.12
 
 # gcc
 gcc_version ?= 5.5.0

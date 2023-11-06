@@ -38,6 +38,9 @@ echo "export CLASSPATH=.:\$JAVA_HOME/lib/dt.jar:\$JAVA_HOME/lib/tools.jar:\$JRE_
 echo "export JDK_HOME=${java_home}/${jdk_new_version_folder} ${java_mark}" >> /etc/profile
 
 # maven
+maven_version_tag=`echo ${maven_short_version} | sed 's#\..*##g'`
+maven_version=`curl -L ${apache_repo}/maven/maven-${maven_version_tag} | grep ">${maven_short_version}" | sed 's#.*href="##g' | sed "s#/.*##g"`
+
 maven_pkg=apache-maven-${maven_version}-bin.tar.gz && \
 maven_download_url=${apache_repo}/maven/maven-3/${maven_version}/binaries/${maven_pkg} && \
 cd ${java_home} && source /etc/profile && curl -L ${maven_download_url} -o ${maven_pkg} && \
@@ -57,15 +60,16 @@ cd ~ && rm -f ${default_maven_repo_home}/settings.xml && ln -s ${maven_setting} 
 
 # gradle
 gradle_pkg=gradle-${gradle_version}-bin.zip && \
-gradle_download_url=https://downloads.gradle-dn.com/distributions/${gradle_pkg} && \
+gradle_download_url=${gradle_repo}/${gradle_pkg} && \
 cd ${java_home} && source /etc/profile && curl -L ${gradle_download_url} -o ${gradle_pkg} && \
 unzip ${gradle_pkg} && rm -f ${gradle_pkg}
 
 # ant
-ant_repo=${apache_repo}/ant/binaries && \
-ant_pkg=apache-ant-${ant_version}-bin.tar.gz && \
-ant_folder=apache-ant-${ant_version} && \
-cd /usr/java && curl -LO ${ant_repo}/${ant_pkg} && \
+ant_repo=${apache_repo}/ant/binaries
+ant_pkg=`curl -L ${ant_repo} | grep apache-ant-${ant_short_version} | grep "tar.gz" | sed 's#.*href="##g' | sed 's#".*##g' | sed -n 1p`
+ant_version=`echo ${ant_pkg} | sed 's#apache-ant-##g' | sed 's#-.*##g'`
+ant_folder=apache-ant-${ant_version}
+cd /usr/java && curl -LO ${ant_repo}/${ant_pkg}
 tar -xzvf ${ant_pkg} && rm ${ant_pkg}
 
 # other profile

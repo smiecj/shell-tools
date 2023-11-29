@@ -15,13 +15,13 @@ go_version ?= 1.19.3
 jdk_old_version ?= 8
 jdk_new_version ?= 17
 
-maven_short_version=3.8
+maven_short_version ?= 3.8
 gradle_version ?= 7.0.2
 ant_short_version ?= 1.10
 # ant_version ?= 1.10.12
 
 # gcc
-gcc_version ?= 5.5.0
+gcc_version ?= 10.3.0
 glibc_version ?= 2.18
 
 # cmake
@@ -33,3 +33,12 @@ make_version ?= 4.3
 
 # code server
 code_server_version ?= 4.14.1
+
+# prometheus
+prometheus_version ?= 2.45.0
+alertmanager_version ?= 0.26.0
+pushgateway_version ?= 1.6.2
+node_exporter_version ?= 1.6.1
+
+# grafana
+grafana_version ?= 10.2.0

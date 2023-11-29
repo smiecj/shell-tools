@@ -81,8 +81,15 @@ make rust
 
 ## [code server](https://github.com/coder/code-server)
 
-```
+```shell
 make code-server
+```
+
+## [prometheus](https://github.com/prometheus/prometheus)
+
+```shell
+# 将会安装 prometheus, alertmanager, pushgateway 和 node-exporter
+make prometheus
 ```
 
 ## lvim

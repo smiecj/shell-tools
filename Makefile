@@ -50,3 +50,9 @@ make:
 
 code-server:
 	bash ./backend/code-server/install-code-server.sh
+
+prometheus:
+	bash ./backend/prometheus/install-prometheus.sh
+
+grafana:
+	bash ./backend/grafana/install-grafana.sh

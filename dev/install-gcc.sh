@@ -20,4 +20,6 @@ rm -rf ${gcc_folder} && rm -f ${gcc_pkg}
 # echo -e "\n${gcc_mark}" >> /etc/profile
 # echo "export LD_LIBRARY_PATH=/usr/local/lib:\$LD_LIBRARY_PATH ${gcc_mark}" >> /etc/profile
 
+# export LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib64
+
 popd

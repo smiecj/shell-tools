@@ -47,23 +47,25 @@ gcc_repo = http://ftp.gnu.org/gnu/gcc
 glibc_repo = http://ftp.gnu.org/gnu/glibc
 make_repo = http://ftp.gnu.org/gnu/make
 
+# grafana
+grafana_repo = https://dl.grafana.com/enterprise/release
 
 # other common var
 
 ifeq "${NET}" "CN"
 # git
-github_url = https://gh-proxy.com/https://github.com
-github_repo = https://gh-proxy.com/https://github.com
+github_url = https://mirror.ghproxy.com/https://github.com
+github_repo = https://mirror.ghproxy.com/https://github.com
 
 # apache
 apache_repo = https://mirrors.tuna.tsinghua.edu.cn/apache
 
 # zsh
-zsh_repo = https://gh-proxy.com/https://github.com/smiecj/zsh
-zsh_ohmyzsh_repo = https://gh-proxy.com/https://github.com/ohmyzsh/ohmyzsh
-zsh_autosuggestion_repo = https://gh-proxy.com/https://github.com/zsh-users/zsh-autosuggestions
-zsh_syntax_highlighting_repo = https://gh-proxy.com/https://github.com/zsh-users/zsh-syntax-highlighting
-zsh_powerlevel10k_repo = https://gh-proxy.com/https://github.com/smiecj/powerlevel10k
+zsh_repo = https://mirror.ghproxy.com/https://github.com/smiecj/zsh
+zsh_ohmyzsh_repo = https://mirror.ghproxy.com/https://github.com/ohmyzsh/ohmyzsh
+zsh_autosuggestion_repo = https://mirror.ghproxy.com/https://github.com/zsh-users/zsh-autosuggestions
+zsh_syntax_highlighting_repo = https://mirror.ghproxy.com/https://github.com/zsh-users/zsh-syntax-highlighting
+zsh_powerlevel10k_repo = https://mirror.ghproxy.com/https://github.com/smiecj/powerlevel10k
 
 # conda
 condarc_file = condarc
@@ -92,5 +94,8 @@ cargo_config = config_ustc
 gcc_repo = https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc
 glibc_repo = https://mirrors.tuna.tsinghua.edu.cn/gnu/glibc
 make_repo = https://mirrors.tuna.tsinghua.edu.cn/gnu/make
+
+# grafana
+grafana_repo = https://mirrors.huaweicloud.com/grafana
 
 endif

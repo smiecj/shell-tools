@@ -1,6 +1,10 @@
 #!/bin/bash
 set -exo pipefail
 
+# diffutils
+
+${INSTALLER} -y install diffutils
+
 pushd /tmp
 
 gcc_pkg=gcc-${gcc_version}.tar.gz

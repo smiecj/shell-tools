@@ -22,7 +22,7 @@ mv ${code_server_pkg} ${code_server_home}
 
 popd
 
-pushd ${module_home}
+pushd ${modules_home}
 
 tar -xzvf ${code_server_pkg}
 rm ${code_server_pkg}

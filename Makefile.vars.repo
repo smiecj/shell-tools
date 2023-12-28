@@ -4,37 +4,30 @@ repo_home = /opt/repo
 modules_home = /opt/modules
 
 # apache
-apache_repo = https://downloads.apache.org
+apache_repo ?= https://downloads.apache.org
 
 # git
-github_url = https://github.com
-github_repo = https://github.com
-
-# zsh
-zsh_repo = https://github.com/smiecj/zsh
-zsh_ohmyzsh_repo = https://github.com/ohmyzsh/ohmyzsh
-zsh_autosuggestion_repo = https://github.com/zsh-users/zsh-autosuggestions
-zsh_syntax_highlighting_repo = https://github.com/zsh-users/zsh-syntax-highlighting
-zsh_powerlevel10k_repo = https://github.com/smiecj/powerlevel10k
+github_url ?= https://github.com
+github_repo ?= https://github.com
 
 # conda
 condarc_file = condarc
 
 # python
-pip_repo = https://pypi.org/simple
+pip_repo ?= https://pypi.org/simple
 
 # java
 java_home = /usr/java
-jdk_repo = https://mirrors.tuna.tsinghua.edu.cn/Adoptium
-gradle_repo = https://downloads.gradle.org
+jdk_repo ?= https://mirrors.tuna.tsinghua.edu.cn/Adoptium
+gradle_repo ?= https://downloads.gradle.org
 
 # nodejs
-nodejs_repo=https://nodejs.org/dist
-npm_mirror=https://registry.npmjs.org
+nodejs_repo ?= https://nodejs.org/dist
+npm_mirror ?= https://registry.npmjs.org
 
 # golang
-go_pkg_repo = https://go.dev/dl
-go_proxy = https://proxy.golang.org,direct
+go_pkg_repo ?= https://go.dev/dl
+go_proxy ?= https://proxy.golang.org,direct
 
 # rust & cargo
 RUSTUP_DIST_SERVER = 
@@ -43,46 +36,39 @@ rust_init_script = https://sh.rustup.rs
 cargo_config = 
 
 # gcc
-gcc_repo = http://ftp.gnu.org/gnu/gcc
-glibc_repo = http://ftp.gnu.org/gnu/glibc
-make_repo = http://ftp.gnu.org/gnu/make
+gcc_repo ?= http://ftp.gnu.org/gnu/gcc
+glibc_repo ?= http://ftp.gnu.org/gnu/glibc
+make_repo ?= http://ftp.gnu.org/gnu/make
 
 # grafana
-grafana_repo = https://dl.grafana.com/enterprise/release
+grafana_repo ?= https://dl.grafana.com/enterprise/release
 
 # other common var
 
 ifeq "${NET}" "CN"
 # git
-github_url = https://mirror.ghproxy.com/https://github.com
-github_repo = https://mirror.ghproxy.com/https://github.com
+github_url ?= https://mirror.ghproxy.com/https://github.com
+github_repo ?= https://mirror.ghproxy.com/https://github.com
 
 # apache
-apache_repo = https://mirrors.tuna.tsinghua.edu.cn/apache
-
-# zsh
-zsh_repo = https://mirror.ghproxy.com/https://github.com/smiecj/zsh
-zsh_ohmyzsh_repo = https://mirror.ghproxy.com/https://github.com/ohmyzsh/ohmyzsh
-zsh_autosuggestion_repo = https://mirror.ghproxy.com/https://github.com/zsh-users/zsh-autosuggestions
-zsh_syntax_highlighting_repo = https://mirror.ghproxy.com/https://github.com/zsh-users/zsh-syntax-highlighting
-zsh_powerlevel10k_repo = https://mirror.ghproxy.com/https://github.com/smiecj/powerlevel10k
+apache_repo ?= https://mirrors.tuna.tsinghua.edu.cn/apache
 
 # conda
 condarc_file = condarc
 
 # python
-pip_repo = https://mirrors.aliyun.com/pypi/simple
+pip_repo ?= https://mirrors.aliyun.com/pypi/simple
 
 # java
-gradle_repo = https://mirrors.huaweicloud.com/gradle
+gradle_repo ?= https://mirrors.huaweicloud.com/gradle
 
 # nodejs
-nodejs_repo=https://mirrors.tuna.tsinghua.edu.cn/nodejs-release
-npm_mirror=https://registry.npmmirror.com
+nodejs_repo ?= https://mirrors.tuna.tsinghua.edu.cn/nodejs-release
+npm_mirror ?= https://registry.npmmirror.com
 
 # golang
-go_pkg_repo = https://mirrors.aliyun.com/golang
-go_proxy = https://goproxy.cn,direct
+go_pkg_repo ?= https://mirrors.aliyun.com/golang
+go_proxy ?= https://goproxy.cn,direct
 
 # rust
 RUSTUP_DIST_SERVER = https://mirrors.ustc.edu.cn/rust-static
@@ -91,11 +77,18 @@ rust_init_script = https://rsproxy.cn/rustup-init.sh
 cargo_config = config_ustc
 
 # gcc
-gcc_repo = https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc
-glibc_repo = https://mirrors.tuna.tsinghua.edu.cn/gnu/glibc
-make_repo = https://mirrors.tuna.tsinghua.edu.cn/gnu/make
+gcc_repo ?= https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc
+glibc_repo ?= https://mirrors.tuna.tsinghua.edu.cn/gnu/glibc
+make_repo ?= https://mirrors.tuna.tsinghua.edu.cn/gnu/make
 
 # grafana
-grafana_repo = https://mirrors.huaweicloud.com/grafana
+grafana_repo ?= https://mirrors.huaweicloud.com/grafana
 
 endif
+
+# zsh
+zsh_repo ?= ${github_url}/zsh-users/zsh
+zsh_ohmyzsh_repo ?= ${github_url}/ohmyzsh/ohmyzsh
+zsh_autosuggestion_repo ?= ${github_url}/zsh-users/zsh-autosuggestions
+zsh_syntax_highlighting_repo ?= ${github_url}/zsh-users/zsh-syntax-highlighting
+zsh_powerlevel10k_repo ?= ${github_url}/smiecj/powerlevel10k

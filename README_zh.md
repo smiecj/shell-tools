@@ -35,6 +35,12 @@ make zsh
 make python3
 ```
 
+只安装 conda
+
+```
+make conda
+```
+
 ## nodejs
 
 安装 nodejs
@@ -71,6 +77,14 @@ make maven
 make golang
 ```
 
+## php
+
+安装 php
+
+```
+make php
+```
+
 ## rust
 
 安装 rust
@@ -88,8 +102,15 @@ make code-server
 ## [prometheus](https://github.com/prometheus/prometheus)
 
 ```shell
-# 将会安装 prometheus, alertmanager, pushgateway 和 node-exporter
+# 安装 prometheus, alertmanager, pushgateway 和 node-exporter
 make prometheus
+```
+
+## [jupyter](https://github.com/jupyterhub/jupyterhub)
+
+```shell
+# 安装 jupyterhub 和 jupyterlab
+make jupyter
 ```
 
 ## lvim

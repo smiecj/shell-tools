@@ -1,0 +1,12 @@
+# code server
+code_server_port ?= 8082
+
+# jupyter
+jupyterhub_port ?= 8000
+
+# prometheus
+prometheus_port ?= 3001
+alertmanager_port ?= 3002
+
+# grafana
+grafana_port ?= 3000

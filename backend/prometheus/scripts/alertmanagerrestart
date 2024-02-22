@@ -1,0 +1,5 @@
+#!/bin/bash
+
+ps -ef | grep '{alertmanager_home}' | grep -v grep | awk '{print $2}' | xargs --no-run-if-empty kill -9
+
+nohup {alertmanager_home}/alertmanager --config.file={alertmanager_home}/alertmanager.yml --web.listen-address=:{alertmanager_port} >> {alertmanager_home}/test.log 2>&1 &

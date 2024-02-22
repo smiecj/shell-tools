@@ -1,6 +1,10 @@
 #!/bin/bash
 set -exo pipefail
 
+script_full_path=$(realpath $0)
+home_path=$(dirname $script_full_path)
+pushd ${home_path}
+
 prometheus_home=${modules_home}/prometheus
 alertmanager_home=${modules_home}/alertmanager
 pushgateway_home=${modules_home}/pushgateway
@@ -15,7 +19,6 @@ elif [ "aarch64" == "${arch}" ]; then
     arch="arm64"
 fi
 
-
 ## install prometheus
 
 rm -rf ${prometheus_home} && mkdir -p ${prometheus_home}
@@ -28,6 +31,11 @@ rm -f ${prometheus_pkg} && wget ${prometheus_pkg_url} && tar -xzvf ${prometheus_
 mv ${prometheus_folder}/* ./ && rm -r ${prometheus_folder}
 
 popd
+
+cp ./scripts/* /usr/local/bin/
+chmod +x /usr/local/bin/prometheus*
+sed -i "s#{prometheus_home}#${prometheus_home}#g" /usr/local/bin/prometheus*
+sed -i "s#{prometheus_port}#${prometheus_port}#g" /usr/local/bin/prometheus*
 
 ## install alertmanager
 
@@ -42,6 +50,10 @@ mv ${alertmanager_folder}/* ./ && rm -r ${alertmanager_folder}
 
 popd
 
+chmod +x /usr/local/bin/alertmanager*
+sed -i "s#{alertmanager_home}#${alertmanager_home}#g" /usr/local/bin/alertmanager*
+sed -i "s#{alertmanager_port}#${alertmanager_port}#g" /usr/local/bin/alertmanager*
+
 ## install pushgateway
 
 rm -rf ${pushgateway_home} && mkdir -p ${pushgateway_home}
@@ -54,6 +66,10 @@ rm -f ${pushgateway_pkg} && wget ${pushgateway_pkg_url} && tar -xzvf ${pushgatew
 mv ${pushgateway_folder}/* ./ && rm -r ${pushgateway_folder}
 
 popd
+
+chmod +x /usr/local/bin/pushgateway*
+sed -i "s#{pushgateway_home}#${pushgateway_home}#g" /usr/local/bin/pushgateway*
+sed -i "s#{pushgateway_port}#${pushgateway_port}#g" /usr/local/bin/pushgateway*
 
 ## install node exporter
 
@@ -68,10 +84,8 @@ mv ${node_exporter_folder}/* ./ && rm -r ${node_exporter_folder}
 
 popd
 
-## prometheus start
+chmod +x /usr/local/bin/nodeexporter*
+sed -i "s#{node_exporter_home}#${node_exporter_home}#g" /usr/local/bin/nodeexporter*
+sed -i "s#{node_exporter_port}#${node_exporter_port}#g" /usr/local/bin/nodeexporter*
 
-## alertmanager start
-
-## pushgateway start
-
-## node exporter start
+popd

@@ -2,6 +2,7 @@ ROOT = $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 include $(ROOT)/Makefile.vars.repo
 include $(ROOT)/Makefile.vars.version
 include $(ROOT)/Makefile.vars.system
+include $(ROOT)/Makefile.vars.service
 export
 
 hello:
@@ -24,6 +25,9 @@ java-new:
 maven:
 	bash ./dev/install-maven.sh
 
+conda:
+	bash ./dev/install-conda.sh
+
 python3:
 	bash ./dev/install-python.sh
 
@@ -35,6 +39,9 @@ nodejs:
 
 rust:
 	bash ./dev/install-rust.sh
+
+php:
+	bash ./dev/install-php.sh
 
 gcc:
 	bash ./dev/install-gcc.sh
@@ -50,6 +57,9 @@ make:
 
 code-server:
 	bash ./backend/code-server/install-code-server.sh
+
+jupyter:
+	bash ./backend/jupyter/install-jupyter.sh
 
 prometheus:
 	bash ./backend/prometheus/install-prometheus.sh

@@ -9,7 +9,7 @@ python3_version ?= 3.9
 nodejs_version ?= v18.18.2
 
 # golang
-go_version ?= 1.19.3
+go_version ?= 1.21.6
 
 # java
 jdk_old_version ?= 8
@@ -19,6 +19,9 @@ maven_short_version ?= 3.8
 gradle_version ?= 7.0.2
 ant_short_version ?= 1.10
 # ant_version ?= 1.10.12
+
+# php
+php_version ?= 8.1.1
 
 # gcc
 gcc_version ?= 10.3.0
@@ -33,6 +36,11 @@ make_version ?= 4.3
 
 # code server
 code_server_version ?= 4.19.1
+
+# jupyter
+jupyterhub_version ?= 4.0.2
+jupyterlab_version ?= 4.0.12
+configurable_http_proxy ?= 4.6.1
 
 # prometheus
 prometheus_version ?= 2.45.0

@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [ $# -eq 1 ] && [ -n $1 ]; then
+	user_name=$1
+else
+    echo "input user empty"
+    exit 1
+fi
+
+user_config_path=/home/${user_name}/.jupyter/lab/user-settings
+
+if [ -d ${user_config_path} ]; then
+    echo "user config path exists"
+    exit 0
+fi
+
+useradd -ms /bin/bash ${user_name}
+
+mkdir -p ${user_config_path}
+cp -r {jupyterhub_home}/{common_user_config_folder}/* ${user_config_path}
+chown -R ${user_name}:${user_name} /home/${user_name}

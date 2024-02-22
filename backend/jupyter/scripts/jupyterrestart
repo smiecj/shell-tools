@@ -1,0 +1,15 @@
+ps -ef | grep 'jupyterhub' | grep -v grep | awk '{print $2}' | xargs --no-run-if-empty kill -9
+
+ps -ef | grep 'ipykernel' | grep -v grep | awk '{print $2}' | xargs --no-run-if-empty kill -9
+
+ps -ef | grep 'configurable-http-proxy' | grep -v grep | awk '{print $2}' | xargs --no-run-if-empty kill -9
+
+sleep 1
+
+pushd {jupyterhub_home}
+
+source ${CONDA_HOME}/bin/activate {jupyter_env_name}
+
+nohup jupyterhub --config=./jupyterhub_config.py --debug > test.log 2>&1 &
+
+popd

@@ -37,6 +37,12 @@ install conda & python3
 make python3
 ```
 
+only install conda
+
+```
+make conda
+```
+
 ## nodejs
 
 install nodejs
@@ -73,6 +79,14 @@ install golang
 make golang
 ```
 
+## php
+
+install php
+
+```
+make php
+```
+
 ## rust
 
 install rust
@@ -92,6 +106,13 @@ make code-server
 ```shell
 # will install prometheus, alertmanager, pushgateway and node-exporter
 make prometheus
+```
+
+## [jupyter](https://github.com/jupyterhub/jupyterhub)
+
+```shell
+# will install jupyterhub + jupyterlab
+make jupyter
 ```
 
 ## lvim

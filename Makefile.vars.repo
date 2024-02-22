@@ -43,32 +43,30 @@ make_repo ?= http://ftp.gnu.org/gnu/make
 # grafana
 grafana_repo ?= https://dl.grafana.com/enterprise/release
 
-# other common var
-
 ifeq "${NET}" "CN"
 # git
-github_url ?= https://mirror.ghproxy.com/https://github.com
-github_repo ?= https://mirror.ghproxy.com/https://github.com
+github_url = https://mirror.ghproxy.com/https://github.com
+github_repo = https://mirror.ghproxy.com/https://github.com
 
 # apache
-apache_repo ?= https://mirrors.tuna.tsinghua.edu.cn/apache
+apache_repo = https://mirrors.tuna.tsinghua.edu.cn/apache
 
 # conda
 condarc_file = condarc
 
 # python
-pip_repo ?= https://mirrors.aliyun.com/pypi/simple
+pip_repo = https://mirrors.aliyun.com/pypi/simple
 
 # java
-gradle_repo ?= https://mirrors.huaweicloud.com/gradle
+gradle_repo = https://mirrors.huaweicloud.com/gradle
 
 # nodejs
-nodejs_repo ?= https://mirrors.tuna.tsinghua.edu.cn/nodejs-release
-npm_mirror ?= https://registry.npmmirror.com
+nodejs_repo = https://mirrors.tuna.tsinghua.edu.cn/nodejs-release
+npm_mirror = https://registry.npmmirror.com
 
 # golang
-go_pkg_repo ?= https://mirrors.aliyun.com/golang
-go_proxy ?= https://goproxy.cn,direct
+go_pkg_repo = https://mirrors.aliyun.com/golang
+go_proxy = https://goproxy.cn,direct
 
 # rust
 RUSTUP_DIST_SERVER = https://mirrors.ustc.edu.cn/rust-static
@@ -77,12 +75,12 @@ rust_init_script = https://rsproxy.cn/rustup-init.sh
 cargo_config = config_ustc
 
 # gcc
-gcc_repo ?= https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc
-glibc_repo ?= https://mirrors.tuna.tsinghua.edu.cn/gnu/glibc
-make_repo ?= https://mirrors.tuna.tsinghua.edu.cn/gnu/make
+gcc_repo = https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc
+glibc_repo = https://mirrors.tuna.tsinghua.edu.cn/gnu/glibc
+make_repo = https://mirrors.tuna.tsinghua.edu.cn/gnu/make
 
 # grafana
-grafana_repo ?= https://mirrors.huaweicloud.com/grafana
+grafana_repo = https://mirrors.huaweicloud.com/grafana
 
 endif
 

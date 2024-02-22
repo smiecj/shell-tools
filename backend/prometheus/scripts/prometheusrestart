@@ -1,0 +1,5 @@
+#!/bin/bash
+
+ps -ef | grep '{prometheus_home}' | grep -v grep | awk '{print $2}' | xargs --no-run-if-empty kill -9
+
+nohup {prometheus_home}/prometheus --web.enable-lifecycle --config.file={prometheus_home}/prometheus.yml --web.listen-address=:{prometheus_port} >> {prometheus_home}/test.log 2>&1 &

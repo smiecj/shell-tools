@@ -1,0 +1,5 @@
+#!/bin/bash
+
+ps -ef | grep '{pushgateway_home}' | grep -v grep | awk '{print $2}' | xargs --no-run-if-empty kill -9
+
+nohup {pushgateway_home}/pushgateway --web.listen-address=":{pushgateway_port}" --web.enable-admin-api --web.enable-lifecycle >> {pushgateway_home}/test.log 2>&1 &

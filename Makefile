@@ -66,3 +66,15 @@ prometheus:
 
 grafana:
 	bash ./backend/grafana/install-grafana.sh
+
+ffmpeg:
+	bash ./life/media/install-ffmpeg.sh
+
+opencc:
+	bash ./life/media/install-opencc.sh
+
+mediainfo:
+	bash ./life/media/install-mediainfo.sh
+
+metaflac:
+	bash ./life/media/install-metaflac.sh

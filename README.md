@@ -122,3 +122,21 @@ install neovim & lvim & cargo
 ```
 make lvim
 ```
+
+## media
+
+install media tools
+
+```
+# install ffmpeg
+make ffmpeg
+
+# install opencc
+make opencc
+
+# install mediainfo
+make mediainfo
+
+# install metaflac
+make metaflac
+```

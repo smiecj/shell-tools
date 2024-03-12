@@ -120,3 +120,21 @@ make jupyter
 ```
 make lvim
 ```
+
+## media
+
+安装媒体相关工具
+
+```
+# 安装 ffmpeg
+make ffmpeg
+
+# 安装 opencc
+make opencc
+
+# 安装 mediainfo
+make mediainfo
+
+# 安装 metaflac
+make metaflac
+```

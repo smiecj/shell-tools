@@ -50,3 +50,20 @@ node_exporter_version ?= 1.6.1
 
 # grafana
 grafana_version ?= 10.2.0
+
+# music
+
+## ffmpeg
+ffmpeg_version ?= n6.1.1
+
+## doxygen
+doxygen_version ?= Release_1_10_0
+
+## opencc
+opencc_version ?= ver.1.1.7
+
+## mediainfo
+mediainfolib_version ?= v24.01
+
+## flac
+flac_version ?= 1.4.3

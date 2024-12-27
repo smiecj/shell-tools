@@ -1,0 +1,18 @@
+#!/bin/bash
+set -eo pipefail
+
+pushd {httpd_home}
+
+export $(xargs < httpd.properties)
+
+cp httpd.conf /usr/local/apache2/conf/httpd.conf
+
+env_keys=`printenv | sed "s#=.*##g"`
+for current_env_key in ${env_keys[@]}
+do
+    sed -i "s#{${current_env_key}}#${!current_env_key}#g" /usr/local/apache2/conf/httpd.conf
+done
+
+mkdir -p ${document_home}
+
+popd

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# hostname=`hostname`
+# user=${USER}
+
+pushd {flink_home}/log
+
+newest_log_file=`ls -lrt . | grep -v "grep" | grep "taskexecutor" | tail -n 1 | sed 's#.* ##g'`
+
+tail -f ${newest_log_file} -n 100
+
+popd

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export $(xargs < {node_exporter_home}/node_exporter.properties)
+
+nohup {node_exporter_home}/node_exporter --web.listen-address=:${port} >> {node_exporter_home}/node_exporter.log 2>&1 &

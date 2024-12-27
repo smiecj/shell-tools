@@ -1,0 +1,99 @@
+#!/bin/bash
+
+export $(xargs < {mysql_home}/mysql.properties)
+
+if [ "true" == "${use_local_ld_library}" ]; then
+    export LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib64
+fi
+
+export PATH=/opt/modules/mysql/bin:$PATH
+
+# init mysql (only for first time)
+## refer: mysql official entrypoint.sh: https://github.com/docker-library/mysql/blob/master/5.7/docker-entrypoint.sh
+
+## set mysql cnf file
+my_cnf=/etc/my.cnf
+cp {mysql_home}/my.cnf ${my_cnf}
+
+env_keys=`printenv | sed "s#=.*##g"`
+for current_env_key in ${env_keys[@]}
+do
+    sed -i "s#{${current_env_key}}#${!current_env_key}#g" ${my_cnf} || true
+done
+
+# without password param
+mysql_connect_root_param="-h127.0.0.1 -P${port} -uroot"
+
+# with native password param
+mysql_identified_param="WITH mysql_native_password"
+
+# if [ "${version}" \> "8.0.0" ]; then
+mysql_connect_root_param="${mysql_connect_root_param} --connect-expired-password"
+mysql_identified_param=""
+
+## init mysql data dir
+if [ ! -d ${data_dir} ] || [ ! -d ${data_dir}/mysql ]; then
+    echo "" > ${mysqld_log}
+    mkdir -p ${data_dir}
+    mysqld --initialize
+else
+    echo "mysql data dir ${data_dir} is not empty, will not initialize"
+fi
+
+## get default password
+origin_mysql_password=`cat ${mysqld_log} | grep 'temporary password' | sed 's/.*temporary password.* //g'`
+if [ -z "$origin_mysql_password" ]; then
+    echo "origin mysql password not exist, will exit init"
+    exit
+fi
+
+## temporaily start mysql
+nohup mysqld --user=root > /dev/null 2>&1 &
+
+## wait until started
+while :
+do
+    mysql_ready_grep_ret=`cat ${mysqld_log} | grep "ready for connections"`
+    if [ -n "${mysql_ready_grep_ret}" ]; then
+        echo "mysql started"
+        break
+    else
+        echo "mysql has not start, will wait for it"
+        sleep 3
+    fi
+done
+
+mysql_version=`mysql -V`
+
+## set root password
+mysql ${mysql_connect_root_param} -p"${origin_mysql_password}" -e "SET PASSWORD = '${root_password}'"
+
+mysql ${mysql_connect_root_param} -p"${root_password}" -e "UPDATE mysql.user SET host = '%' WHERE user = 'root'"
+
+# mysql ${mysql_connect_root_param} -p"$origin_mysql_password" -e "ALTER USER 'root'@'%' IDENTIFIED ${mysql_identified_param} BY '${root_password}'"
+
+## set user db and add permission
+if [ -n "${user_db}" ]; then
+    mysql ${mysql_connect_root_param} -p"${root_password}" -e "CREATE DATABASE ${user_db}"
+fi
+if [ -n "${user_name}" ]; then
+    ## user password may set failed, to ignore
+    mysql ${mysql_connect_root_param} -p"${root_password}" -e "CREATE USER '${user_name}'@'%' IDENTIFIED BY '${USER_PASSWORD}'" || true
+    ## set user password by native password for mysql <= 5.7
+    mysql ${mysql_connect_root_param} -p"${root_password}" -e "ALTER USER '${user_name}'@'%' IDENTIFIED ${mysql_identified_param} BY '${USER_PASSWORD}'" || true
+    mysql ${mysql_connect_root_param} -p"${root_password}" -e "GRANT ALL PRIVILEGES ON ${user_db}.* TO '${user_name}'@'%' WITH GRANT OPTION" || true
+fi
+
+## execute init sql
+sql_files=`ls -l {mysql_init_sql_home} | grep -E "\.sql$" | sed "s/.* //g" | tr '\n' ' '`
+for current_sql_file in ${sql_files[@]}
+do
+    mysql ${mysql_connect_root_param} -p"${root_password}" -D${user_db} < {mysql_init_sql_home}/${current_sql_file} || true
+done
+
+## close mysql
+# mysqladmin -uroot -p${root_password} shutdown
+ps -ef | grep "mysqld --user" | grep -v grep | awk '{print $2}' | xargs --no-run-if-empty kill -9
+
+## remove origin mysql log
+echo "" > ${mysqld_log}

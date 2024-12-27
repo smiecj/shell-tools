@@ -1,25 +1,43 @@
 NET ?= WORLD
 
-repo_home = /opt/repo
-modules_home = /opt/modules
+repo_home ?= /opt/repo
+modules_home ?= /opt/modules
+
+# ubuntu
+ubuntu_repo = http://archive.ubuntu.com/ubuntu
 
 # apache
 apache_repo ?= https://downloads.apache.org
 
+# sourceforge
+# https://greasyfork.org/zh-CN/scripts/440530-sourceforge-net-%E4%B8%8B%E8%BD%BD%E5%8A%A0%E9%80%9F-%E4%B8%AD%E5%9B%BD
+sourceforge_repo ?= http://downloads.sourceforge.net/project
+
+# gcc
+gcc_pub_repo ?= http://gcc.gnu.org/pub/gcc
+
 # git
 github_url ?= https://github.com
 github_repo ?= https://github.com
+github_raw ?= https://raw.githubusercontent.com
 
 # conda
 condarc_file = condarc
 
 # python
-pip_repo ?= https://pypi.org/simple
+pip_repo = https://pypi.org/simple
+pip_trusted_host = "pypi.org files.pythonhosted.org pypi.python.org"
 
 # java
+## https://jdk.java.net
 java_home = /usr/java
-jdk_repo ?= https://mirrors.tuna.tsinghua.edu.cn/Adoptium
-gradle_repo ?= https://downloads.gradle.org
+# jdk_repo ?= https://mirrors.tuna.tsinghua.edu.cn/Adoptium
+
+maven_repo = https://repo1.maven.org/maven2
+# maven_repo = https://repo.maven.apache.org/maven2
+
+gradle_repo = https\\://services.gradle.org/distributions
+
 
 # nodejs
 nodejs_repo ?= https://nodejs.org/dist
@@ -36,32 +54,55 @@ rust_init_script = https://sh.rustup.rs
 cargo_config = 
 
 # gcc
-gcc_repo ?= http://ftp.gnu.org/gnu/gcc
-glibc_repo ?= http://ftp.gnu.org/gnu/glibc
-make_repo ?= http://ftp.gnu.org/gnu/make
+gnu_repo ?= http://ftp.gnu.org/gnu
 
 # grafana
 grafana_repo ?= https://dl.grafana.com/enterprise/release
 
+# mysql
+mysql_repo = https://cdn.mysql.com/Downloads
+
+# clickhouse
+clickhouse_repo = https://packages.clickhouse.com
+
 ifeq "${NET}" "CN"
+
+ubuntu_repo = https://mirrors.ustc.edu.cn/ubuntu
+
 # git
-github_url = https://mirror.ghproxy.com/https://github.com
-github_repo = https://mirror.ghproxy.com/https://github.com
+## https://ghproxy.link
+github_url = https://ghgo.xyz/https://github.com
+github_repo = https://ghgo.xyz/https://github.com
+github_raw = https://ghgo.xyz/https://raw.githubusercontent.com
 
 # apache
-apache_repo = https://mirrors.tuna.tsinghua.edu.cn/apache
+# apache_repo = https://mirrors.tuna.tsinghua.edu.cn/apache
+apache_repo = https://mirrors.aliyun.com/apache
+# apache_repo = https://repo.huaweicloud.com/apache
+
+# sourceforge
+sourceforge_repo = http://jaist.dl.sourceforge.net/project
+
+# gcc
+# gcc_pub_repo = https://ftp.tsukuba.wide.ad.jp/software/gcc
+gcc_pub_repo = https://mirror.math.princeton.edu/pub/gcc
 
 # conda
-condarc_file = condarc
+condarc_file = condarc_tsing
+# condarc_file = condarc_ustc
 
 # python
 pip_repo = https://mirrors.aliyun.com/pypi/simple
+pip_trusted_host = mirrors.aliyun.com
 
 # java
-gradle_repo = https://mirrors.huaweicloud.com/gradle
+maven_repo = https://mirrors.huaweicloud.com/repository/maven
+
+gradle_repo = https\\://mirrors.cloud.tencent.com/gradle
 
 # nodejs
-nodejs_repo = https://mirrors.tuna.tsinghua.edu.cn/nodejs-release
+# nodejs_repo = https://mirrors.tuna.tsinghua.edu.cn/nodejs-release
+nodejs_repo = https://mirrors.aliyun.com/nodejs-release
 npm_mirror = https://registry.npmmirror.com
 
 # golang
@@ -75,12 +116,20 @@ rust_init_script = https://rsproxy.cn/rustup-init.sh
 cargo_config = config_ustc
 
 # gcc
-gcc_repo = https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc
-glibc_repo = https://mirrors.tuna.tsinghua.edu.cn/gnu/glibc
-make_repo = https://mirrors.tuna.tsinghua.edu.cn/gnu/make
+# gnu_repo = https://mirrors.tuna.tsinghua.edu.cn/gnu
+gnu_repo = https://mirrors.aliyun.com/gnu
 
 # grafana
 grafana_repo = https://mirrors.huaweicloud.com/grafana
+
+# mysql
+## https://ftp.ntu.edu.tw/MySQL/Downloads/MySQL-5.7/
+# mysql_repo = https://mirrors.aliyun.com/mysql
+mysql_repo = https://repo.huaweicloud.com/mysql/Downloads
+mysql_repo = 
+
+# clickhouse
+clickhouse_repo = https://mirrors.aliyun.com/clickhouse
 
 endif
 
@@ -89,4 +138,7 @@ zsh_repo ?= ${github_url}/zsh-users/zsh
 zsh_ohmyzsh_repo ?= ${github_url}/ohmyzsh/ohmyzsh
 zsh_autosuggestion_repo ?= ${github_url}/zsh-users/zsh-autosuggestions
 zsh_syntax_highlighting_repo ?= ${github_url}/zsh-users/zsh-syntax-highlighting
-zsh_powerlevel10k_repo ?= ${github_url}/smiecj/powerlevel10k
+zsh_powerlevel10k_repo ?= ${github_url}/romkatv/powerlevel10k
+
+# firefox
+firefox_mirror="https://ftp.mozilla.org"

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+pushd {jupyterhub_home}
+
+source ${CONDA_HOME}/bin/activate {jupyter_env_name}
+
+nohup jupyterhub --config={jupyterhub_config_home}/jupyterhub_config.py --debug >> jupyterhub.log 2>&1 &
+
+popd

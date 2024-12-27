@@ -1,0 +1,8 @@
+#!/bin/bash
+
+export $(xargs < {doris_home}/conf/doris.properties)
+
+unset http_proxy
+unset https_proxy
+
+/opt/modules/doris/be/bin/start_be.sh --daemon

@@ -1,3 +1,0 @@
-#!/bin/bash
-
-tail -f {node_exporter_home}/test.log

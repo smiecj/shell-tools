@@ -8,7 +8,7 @@ make_pkg=${make_folder}.tar.gz
 
 pushd /tmp
 
-curl -LO ${make_repo}/${make_pkg}
+curl -LO ${gnu_repo}/make/${make_pkg}
 tar -xzvf ${make_pkg}
 rm ${make_pkg}
 pushd ${make_folder}

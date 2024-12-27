@@ -1,0 +1,3 @@
+#!/bin/bash
+
+nohup {grafana_home}/bin/grafana-server --homepath "{grafana_home}" --config "{grafana_home}/conf/custom.ini" >> {grafana_home}/grafana.log 2>&1 &

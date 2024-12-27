@@ -1,0 +1,109 @@
+#!/bin/bash
+set -eo pipefail
+
+if [ -f /usr/local/bin/mysql ] || [ -f /usr/local/bin/jq ]; then
+    export LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib64
+fi
+
+pushd {hue_home}
+
+pushd desktop/conf
+
+# export $(xargs < desktop/conf/hue.properties)
+source hue.properties
+
+# hbase config
+IFS='::' read -r -a hbase_address_arr <<< "${hbase_clusters}"
+hbase_clusters=""
+for index in "${!hbase_address_arr[@]}"
+do
+    if [ -n "${hbase_clusters}" ]; then
+        hbase_clusters="${hbase_clusters},"
+    fi
+    hbase_clusters="${hbase_clusters}(Cluster${index}|${hbase_address_arr[${index}]})"
+done
+
+# interpreters config
+space_4="    "
+to_replace_interpreters=""
+for current_interpreter in $(echo ${interpreters} | jq -c ".[]")
+do
+    current_interpreter_name=`echo ${current_interpreter} | jq -r ".name"`
+    current_interpreter_display_name=`echo ${current_interpreter} | jq -r ".display // empty"`
+    current_interpreter_interface=`echo ${current_interpreter} | jq -r ".interface"`
+    current_interpreter_options=`echo ${current_interpreter} | jq -cr ".options"`
+    
+    if [ -z "${current_interpreter_display_name}" ]; then
+        current_interpreter_display_name=${current_interpreter_name}
+    fi
+
+    to_replace_interpreters="${to_replace_interpreters}\n${space_4}[[[${current_interpreter_name}]]]"
+    to_replace_interpreters="${to_replace_interpreters}\n${space_4}${space_4}name=${current_interpreter_display_name}"
+    to_replace_interpreters="${to_replace_interpreters}\n${space_4}${space_4}interface=${current_interpreter_interface}"
+    to_replace_interpreters="${to_replace_interpreters}\n${space_4}${space_4}options=${current_interpreter_options}"
+done
+
+interpreters=${to_replace_interpreters}
+
+cp hue.ini.template hue.ini
+
+# init hue config
+# env_keys=`printenv | sed "s#=.*##g"`
+env_keys=`set | sed "s#=.*##g"`
+for current_env_key in ${env_keys[@]}
+do
+    sed -i "s#{${current_env_key}}#${!current_env_key}#g" hue.ini || true
+done
+
+popd
+
+# init user
+
+mysql_connect_param="-h${db_host} -P${db_port} -u${db_user} -p${db_password}"
+mysql_connect_param_withdb="${mysql_connect_param} -D${db_db}"
+
+# wait mysql start finish
+while :
+do
+    mysql_connect_ret=`mysql ${mysql_connect_param} -e "select version()" 2>/dev/null || true`
+    if [ -n "${mysql_connect_ret}" ]; then
+        echo "mysql has start"
+        break
+    else
+        echo "mysql has not start, will wait for it"
+        sleep 3
+    fi
+done
+
+# check whether db has created
+table_check_ret=`mysql ${mysql_connect_param} -e "show databases like '${db_db}'" 2>/dev/null || true`
+if [ -z "${table_check_ret}" ]; then
+    mysql ${mysql_connect_param} -e "create database ${db_db}"
+fi
+
+# check whether table has created
+table_check_ret=`mysql ${mysql_connect_param_withdb} -e "show create table desktop_document2" 2>/dev/null || true`
+if [ -z "${table_check_ret}" ]; then
+    ./build/env/bin/hue syncdb --noinput
+    ./build/env/bin/hue migrate
+    mysql ${mysql_connect_param} -e "alter database ${db_db} character set utf8"
+    mysql ${mysql_connect_param_withdb} -e "ALTER TABLE desktop_document2 CHARACTER SET utf8, COLLATE utf8_general_ci"
+    mysql ${mysql_connect_param_withdb} -e "ALTER TABLE beeswax_queryhistory modify \`query\` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL"
+    mysql ${mysql_connect_param_withdb} -e "ALTER TABLE desktop_document2 modify column name varchar(255) CHARACTER SET utf8"
+    mysql ${mysql_connect_param_withdb} -e "ALTER TABLE desktop_document2 modify column description longtext CHARACTER SET utf8"
+    mysql ${mysql_connect_param_withdb} -e "ALTER TABLE desktop_document2 modify column search longtext CHARACTER SET utf8"
+fi
+
+# ignore create admin user
+# ./build/env/bin/hue createsuperuser --username ${admin_user} --email ${admin_mail} --noinput > /tmp/hue_start.log 2>&1 || true
+### support --password arg: https://github.com/smiecj/hue/commit/337a69b316adc7d6dda507b931c394ab6965e1e8
+# ./build/env/bin/hue changepassword ${admin_user} --password ${admin_password} >> /tmp/hue_start.log 2>&1 || true
+
+# create hue user
+
+check_hue_user_exists=`id hue 2>/dev/null || true`
+if [ -z "${check_hue_user_exists}" ]; then
+    useradd hue
+fi
+
+popd

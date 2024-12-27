@@ -1,8 +1,19 @@
-OS = $(if $(wildcard /etc/redhat-release),"redhat","ubuntu")
-ifeq ($(OS),"redhat")
+OS = $(if $(wildcard /etc/redhat-release),redhat,ubuntu)
+ifeq ($(OS),redhat)
     INSTALLER = yum
+    SYSTEM_VERSION = $(shell cat /etc/redhat-release | awk '{print $$4}')
 else
     INSTALLER = apt
+#    SYSTEM_VERSION = $(shell lsb_release -d | sed 's#.*Ubuntu ##g')
+    SYSTEM_VERSION = $(shell cat /etc/*release | grep DISTRIB_RELEASE | sed 's/.*=//g')
 endif
 
-prefix ?= /usr/local
+PREFIX ?= /usr/local
+
+ARCH = $(shell uname -p)
+ARCH_SHORT = $(ARCH)
+ifeq ($(ARCH),x86_64)
+    ARCH_SHORT = amd64
+else ifeq ($(ARCH),aarch64)
+    ARCH_SHORT = arm64
+endif

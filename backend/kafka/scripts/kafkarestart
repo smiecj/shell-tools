@@ -1,0 +1,7 @@
+#!/bin/bash
+
+kafkastop
+
+sleep 2
+
+kafkastart

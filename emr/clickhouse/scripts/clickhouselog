@@ -1,0 +1,3 @@
+#!/bin/bash
+
+tail -f /var/log/clickhouse-server/clickhouse-server.log -n 1000

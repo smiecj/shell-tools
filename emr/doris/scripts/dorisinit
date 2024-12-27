@@ -1,0 +1,93 @@
+#!/bin/bash
+set -e pipefail
+
+pushd {doris_home}/conf
+
+export $(xargs < doris.properties)
+
+unset http_proxy
+unset https_proxy
+
+if [ -L /usr/local/bin/mysql ] || [ -f /usr/local/bin/mysql ]; then
+    export LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib64
+elif [ -L /usr/bin/mysql ] || [ -f /usr/bin/mysql ]; then
+    true
+else
+    echo "mysql client is not exists, will exit init"
+    exit 1
+fi
+
+# doris_connect_python_cmd="import MySQLdb; conn = MySQLdb.connect(host = '127.0.0.1', port = 3306, user = 'root', db = 'mysql', password = 'root'); conn.close()"
+
+# without password param
+local_hostname=`hostname`
+doris_connect_root_param="-h${local_hostname} -P${fe_query_port} -uroot"
+
+# init fe config
+cp fe.conf.template ../fe/conf/fe.conf
+
+env_keys=`printenv | sed "s#=.*##g"`
+for current_env_key in ${env_keys[@]}
+do
+    sed -i "s#{${current_env_key}}#${!current_env_key}#g" ../fe/conf/fe.conf
+done
+
+mkdir -p ${fe_meta_dir}
+
+# init be config
+
+cp be.conf.template ../be/conf/be.conf
+
+env_keys=`printenv | sed "s#=.*##g"`
+for current_env_key in ${env_keys[@]}
+do
+    sed -i "s#{${current_env_key}}#${!current_env_key}#g" ../be/conf/be.conf
+done
+
+mkdir -p ${be_data_dir}
+
+need_start_fe=true
+doris_fe_check=`ps -ef | grep "org.apache.doris.DorisFE" | grep -v grep || true`
+if [ -n "${doris_fe_check}" ]; then
+    need_start_fe=false
+fi
+
+# start fe first
+if [ "${need_start_fe}" == "true" ]; then
+    dorisfestart
+fi
+
+# wait fe
+## wait until started
+while :
+do
+    fe_query_port_check_ret=`lsof -nP -iTCP:${fe_query_port} -sTCP:LISTEN || true`
+    if [ -n "${fe_query_port_check_ret}" ]; then
+        echo "doris started"
+        break
+    else
+        echo "doris has not start, will wait for it"
+        sleep 3
+    fi
+done
+
+# check if without password can login
+fe_root_without_password_can_login=`mysql ${doris_connect_root_param} -e "select version()" 2>/dev/null || true`
+if [ -n "${fe_root_without_password_can_login}" ]; then
+    echo "doris can connect without password, will init user first" 
+    mysql ${doris_connect_root_param} -e "SET PASSWORD FOR 'root' = PASSWORD('${root_password}')"
+
+    # add backend
+    IFS=',' read -r -a backend_arr <<< "${fe_backends}"
+    for current_backend in ${backend_arr[@]}
+    do
+        mysql ${doris_connect_root_param} -p${root_password} -e "ALTER SYSTEM ADD BACKEND '${current_backend}'"
+    done
+fi
+
+# stop doris fe
+if [ "${need_start_fe}" == "true" ]; then
+    dorisfestop
+fi
+
+popd

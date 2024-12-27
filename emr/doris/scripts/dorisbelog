@@ -1,0 +1,4 @@
+#!/bin/bash
+
+tail -f {doris_home}/be/log/be.INFO -n 100
+

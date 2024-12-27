@@ -1,0 +1,3 @@
+#!/bin/bash
+
+{doris_home}/fe/bin/stop_fe.sh

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+user=${USER}
+hostname=`hostname`
+
+tail -f {zookeeper_home}/logs/zookeeper-${user}-server-${hostname}.out -n 100

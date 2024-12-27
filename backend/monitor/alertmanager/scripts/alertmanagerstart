@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export $(xargs < {alertmanager_home}/alertmanager.properties)
+
+nohup {alertmanager_home}/alertmanager --config.file={alertmanager_home}/alertmanager.yml --web.listen-address=:${port} >> {alertmanager_home}/alertmanager.log 2>&1 &

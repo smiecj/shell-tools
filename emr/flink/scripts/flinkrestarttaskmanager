@@ -1,0 +1,7 @@
+#!/bin/bash
+
+flinkstoptaskmanager
+
+sleep 3
+
+flinkstarttaskmanager

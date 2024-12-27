@@ -1,0 +1,11 @@
+#!/bin/bash
+
+export $(xargs < {minio_home}/minio.properties)
+
+export MINIO_ROOT_USER="${default_user}"
+export MINIO_ROOT_PASSWORD="${default_password}"
+export MINIO_ENDPOINTS=${data_home}
+
+mkdir -p ${data_home}
+mkdir -p ${data_home}/${default_bucket}
+nohup {minio_home}/minio server --address :${port} --console-address :${console_port} >> {minio_home}/minio.log 2>&1 &

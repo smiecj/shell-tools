@@ -1,0 +1,7 @@
+#!/bin/bash
+
+flinkstopjobmanager
+
+sleep 3
+
+flinkstartjobmanager

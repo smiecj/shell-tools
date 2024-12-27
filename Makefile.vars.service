@@ -1,12 +1,272 @@
+# is compile
+COMPILE ?= false
+
+# data home
+data_home = /opt/data
+
 # code server
 code_server_port ?= 8082
 
 # jupyter
 jupyterhub_port ?= 8000
+jupyterhub_auth_authenticator ?= jupyterhub.auth.DummyAuthenticator
+jupyterhub_auth_dummy_password ?= jupyter@Qwer
 
-# prometheus
+jupyterhub_share_path ?= /srv/jupyter/share-code
+
+jupyterhub_database_host ?= 
+jupyterhub_database_port ?=
+jupyterhub_database_user ?= 
+jupyterhub_database_password ?= 
+jupyterhub_database_db ?=
+
+jupyterhub_user_group ?=
+
+# monitors
 prometheus_port ?= 3001
+
+prometheus_tsdb_retention ?= 5y
+
+prometheus_jobs ?= 
+
+prometheus_alertmanager_address ?=
+
+prometheus_cluster_name ?= local_containers
+
 alertmanager_port ?= 3002
+node_exporter_port ?= 9100
+pushgateway_port ?= 9091
 
 # grafana
 grafana_port ?= 3000
+
+# httpd
+httpd_port ?= 8000
+httpd_document_home ?= /opt/data/httpd
+
+# flink
+flink_jobmanager_host ?= 127.0.0.1
+flink_jobmanager_port ?= 6123
+flink_rest_port ?= 18081
+
+flink_masters ?= 
+flink_workers ?=
+
+flink_jobmanager_memory_process_size ?= 1024m
+flink_jobmanager_memory_jvmmetaspace_size ?= 256m
+flink_taskmanager_memory_process_size ?= 1024m
+flink_taskmanager_memory_jvmmetaspace_size ?= 256m
+flink_taskmanager_task_slots ?= 10
+flink_taskmanager_memory_process_size ?= 2048m
+
+flink_pushgateway_factory_class ?=
+flink_pushgateway_address ?=
+flink_pushgateway_jobname ?= my_cluster
+
+flink_ha_type ?= 
+flink_ha_zookeeper_nodes ?=
+flink_ha_zookeeper_root ?=
+flink_ha_cluster_id ?=
+flink_ha_storage_dir ?=
+
+flink_s3_endpoint ?=
+flink_s3_access_key ?=
+flink_s3_secret_key ?=
+
+flink_state_backend_type ?=
+flink_state_checkpoint_dir ?=
+
+flink_checkpoint_interval ?= 10000
+
+flink_classloader_resolve_order ?= child-first
+
+# mysql
+mysql_port ?= 3306
+mysql_data_dir ?= /opt/data/mysql
+
+mysql_root_password ?= 123456
+
+mysql_user_db ?=
+mysql_user_name ?=
+mysql_user_password ?=
+
+mysql_mysqlx_port ?= 33060
+
+mysql_skip_abi_check ?=
+
+# zookeeper
+zookeeper_port ?= 2181
+zookeeper_servers ?= 0.0.0.0:2888:3888
+zookeeper_data_dir ?= /opt/data/zookeeper
+
+zookeeper_fourlwcmd_whitelist ?= *
+
+# kafka
+kafka_port ?= 6667
+kafka_zookeeper_nodes ?= localhost:2181
+kafka_installed_hosts ?= localhost
+kafka_data_dirs ?= /opt/data/kafka
+kafka_broker_start_id ?= 0
+
+# mongo
+mongo_port ?= 27017
+mongo_data_home ?= /opt/data/mongo
+mongo_log_home ?= /var/log/mongo
+
+# clickhouse
+clickhouse_cluster_name ?= my_cluster
+clickhouse_data_path ?= /opt/data/clickhouse/data
+clickhouse_tmp_path ?= /opt/data/clickhouse/tmp
+clickhouse_log_level ?= information
+
+clickhouse_keep_alive_timeout ?= 3
+clickhouse_max_session_timeout ?= 3600
+clickhouse_default_session_timeout ?= 60
+
+clickhouse_server_http_port ?= 8123
+clickhouse_server_tcp_port ?= 9000
+clickhouse_server_mysql_port ?= 9004
+clickhouse_server_postgresql_port ?= 9005
+clickhouse_server_interserver_http_port ?= 9009
+clickhouse_server_listen_host ?= 0.0.0.0
+clickhouse_server_default_user ?= default
+clickhouse_server_default_password ?= test_clickhouse_123
+
+clickhouse_server_max_connections ?= 4096
+clickhouse_server_max_concurrent_queries ?= 100
+clickhouse_server_monitor_port ?= 9363
+
+clickhouse_server_zookeeper_nodes ?= zk_host_1:2181,zk_host_2:2181,zk_host_3:2181
+clickhouse_server_nodes ?= ck_host_1,ck_host_2,ck_host_3
+
+clickhouse_init_database_name ?= csms
+
+clickhouse_user_normal_user ?= ck_user_1;ck_user_2
+clickhouse_user_normal_user_allow_database ?= db1,db2;db3,db4
+clickhouse_user_normal_user_password ?= ck_user_pwd_1;ck_user_pwd_2
+
+clickhouse_max_server_memory_usage ?= 1073741824
+clickhouse_max_user_memory_usage ?= 1073741824
+
+# clickhouse copier
+clickhouse_copier_zookeeper_nodes ?= zk_host_1:2181,zk_host_2:2181,zk_host_3:2181
+clickhouse_copier_source_server_nodes ?= ck_source_host_1,ck_source_host_2,ck_source_host_3
+clickhouse_copier_target_server_nodes ?= ck_target_host_1,ck_target_host_2,ck_target_host_3
+
+clickhouse_copier_source_cluster_name ?= ck_source_my_cluster
+clickhouse_copier_target_cluster_name ?= ck_target_my_cluster
+
+clickhouse_copier_enabled_partitions ?= 
+clickhouse_copier_num_splits ?= 1
+
+clickhouse_copier_task_path ?= /copier/task
+clickhouse_copier_base_dir ?= /opt/modules/clickhouse/copier/base
+
+clickhouse_copier_migrate_enabled ?= 1
+clickhouse_copier_copy_exists_table ?= 1
+clickhouse_copier_recreate_table ?= 0
+
+clickhouse_copier_allow_database ?= 
+clickhouse_copier_allow_tables ?= 
+
+# doris
+doris_fe_meta_dir ?= /opt/data/doris/fe/meta
+doris_root_password ?= 123456
+doris_fe_jvm_xmx ?= 2048m
+doris_fe_log_level ?= INFO
+
+doris_fe_http_port ?= 8030
+doris_fe_rpc_port ?= 9020
+doris_fe_query_port ?= 9030
+doris_fe_edit_log_port ?= 9010
+
+doris_java_home ?= 
+
+doris_be_data_dir ?= /opt/data/doris/be/data
+doris_be_jvm_xmx ?= 2048m
+doris_be_log_level ?= DEBUG
+
+doris_be_port ?= 9060
+doris_be_webserver_port ?= 8040
+doris_be_heartbeat_service_port ?= 9050
+doris_be_brpc_port ?= 8060
+
+doris_fe_backends ?= localhost:9050
+
+# superset
+superset_port ?= 8088
+superset_database_client ?= pymysql
+superset_database_host ?= 
+superset_database_port ?= 
+superset_database_user ?=
+superset_database_password ?=
+superset_database_db ?= superset
+superset_secret_key ?= superset_secret
+
+superset_admin_user ?= superset
+superset_admin_email ?= superset@superset.com
+superset_admin_password ?= superset123
+
+# hue
+hue_http_port ?= 8888
+hue_enable_prometheus ?= true
+hue_app_blacklist ?= search,sqoop,pig,security,jobsub,spark,oozie
+hue_auth_backend ?= desktop.auth.backend.AllowFirstUserDjangoBackend
+
+hue_db_engine ?= sqlite
+hue_db_host ?= 
+hue_db_port ?= 
+hue_db_user ?= 
+hue_db_password ?= 
+hue_db_db ?= hue
+
+hue_timezone ?= Asia/Shanghai
+
+hue_hdfs_namenode_address ?= my_cluster
+hue_hdfs_webhdfs_address ?= localhost:50070
+
+hue_yarn_resourcemanager_host ?= localhost
+hue_yarn_resourcemanager_port ?= 
+
+hue_yarn_proxyserver_address ?= localhost:8088
+hue_yarn_historyserver_address ?= localhost:19888
+hue_yarn_resourcemanager_api_address ?= localhost:8088
+hue_yarn_spark_historyserver_address ?= localhost:18088
+
+hue_hive_server_host ?= localhost
+hue_hive_server_port ?= 10000
+
+hue_hive_metastore_host ?= localhost
+hue_hive_metastore_port ?= 9083
+
+hue_hbase_clusters ?= master1:9090,master2:9090
+
+hue_zookeeper_address ?= localhost:2181
+
+# desktop/libs/notebook/src/notebook/connectors/base.py
+# https://docs.gethue.com/administrator/configuration/connectors
+hue_interpreters ?= {}
+
+# minio
+minio_default_user ?= root
+minio_default_password ?= rootMinio812
+
+minio_data_home ?= /data/minio
+minio_default_bucket ?= test
+
+minio_port ?= 9000
+minio_console_port ?= 9001
+
+# navidrome
+navidrome_admin_user ?= admin
+navidrome_admin_password ?= admin
+navidrome_music_folder ?= ./music
+navidrome_data_folder ?= ./data
+navidrome_port ?= 4533
+navidrome_scan_interval ?= 1h
+navidrome_session_timeout ?= 24h
+
+# icecast
+icecast_admin_password ?= icst_admin
+icecast_source_password ?= source_pwd
+icecast_port ?= 8000

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+flinkstopcluster
+
+sleep 3
+
+flinkstartcluster

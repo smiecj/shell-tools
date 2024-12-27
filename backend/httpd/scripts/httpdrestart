@@ -1,0 +1,7 @@
+#!/bin/bash
+
+httpdstop
+
+sleep 1
+
+httpdstart

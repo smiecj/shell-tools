@@ -1,0 +1,10 @@
+#!/bin/bash
+
+mkdir -p /opt/modules/hue/logs
+
+mkdir -p /opt/modules/hue/run
+
+chown -R hue:hue /opt/modules/hue/run /opt/modules/hue/logs
+# chown -R hue:hue /opt/modules/hue
+
+{hue_home}/build/env/bin/supervisor -p {hue_home}/run/supervisor.pid -l {hue_home}/logs -d

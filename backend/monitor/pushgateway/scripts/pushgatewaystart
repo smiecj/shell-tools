@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export $(xargs < {pushgateway_home}/pushgateway.properties)
+
+nohup {pushgateway_home}/pushgateway --web.listen-address=:${port} >> {pushgateway_home}/pushgateway.log 2>&1 &

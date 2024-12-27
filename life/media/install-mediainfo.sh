@@ -12,8 +12,8 @@ cd Project/GNU/Library
 ./autogen.sh && ./configure --enable-shared && make && make install
 cd /tmp
 
-git clone ${github_url}/MediaArea/MediaInfo && \
-cd MediaInfo/Project/GNU/CLI && \
+git clone ${github_url}/MediaArea/MediaInfo
+cd MediaInfo/Project/GNU/CLI
 ./autogen.sh && ./configure --enable-shared && make && make install
 
 cd /tmp && rm -r MediaInfo && rm -r MediaInfoLib

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+pushd {navidrome_home}
+
+if [ -d /usr/local/include/taglib ]; then
+    export LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib64
+fi
+
+nohup {navidrome_home}/navidrome -c {navidrome_home}/conf/navidrome.toml >> {navidrome_home}/navidrome.log 2>&1 &
+
+popd

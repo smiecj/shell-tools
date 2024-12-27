@@ -1,0 +1,27 @@
+#!/bin/bash
+set -eo pipefail
+
+pushd {icecast_home}
+
+export $(xargs < icecast.properties)
+
+mkdir -p ${log_dir}
+
+cp icecast.xml.template icecast.xml
+
+env_keys=`printenv | sed "s#=.*##g"`
+for current_env_key in ${env_keys[@]}
+do
+    sed -i "s#{${current_env_key}}#${!current_env_key}#g" icecast.xml
+done
+
+# check user
+
+check_icecast2_user_exists=`id icecast2 2>/dev/null || true`
+if [ -z "${check_icecast2_user_exists}" ]; then
+    useradd icecast2
+fi
+
+chown -R icecast2 ${log_dir}
+
+popd

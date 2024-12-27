@@ -1,0 +1,9 @@
+#!/bin/bash
+
+pushd {flink_home}/log
+
+newest_log_file=`ls -lrt . | grep -v "grep" | grep "client-" | tail -n 1 | sed 's#.* ##g'`
+
+tail -f ${newest_log_file} -n 100
+
+popd

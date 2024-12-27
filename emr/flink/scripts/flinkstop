@@ -1,0 +1,9 @@
+#!/bin/bash
+
+export $(xargs < {flink_home}/conf/flink.properties)
+
+flinkstoptaskmanager
+
+if [ -n "${ha_type}" ]; then
+    flinkstopjobmanager
+fi

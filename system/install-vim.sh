@@ -19,34 +19,35 @@ pushd /tmp
 
 git clone https://github.com/vim/vim.git
 
+## 当前: 支持安装 vim 最新
 
-cd src
-make distclean  # if you build Vim before
-make
-sudo make install
+### 当前: router1 编译失败
+
+yum -y remove vim vim-runtime gvim vim-tiny vim-common vim-gui-common
+
+git checkout tags/v8.2.5172
+
+find /usr -name '*config-*' | grep python3 | grep "linux-gnu" | head -n 1
 
 
+./configure --with-features=huge \
+    --enable-multibyte \
+    --enable-rubyinterp=yes \
+    --enable-python3interp=yes \
+    --with-python-config-dir=/usr/lib/python3.8/config-3.8-x86_64-linux-gnu \
+    --enable-perlinterp=yes \
+    --enable-luainterp=yes \
+    --enable-gui=gtk2 \
+    --enable-cscope \
+    --prefix=/usr/local
 
-${INSTALLER} -y install curl wget zip unzip make cmake git
-if [ "yum" == "${INSTALLER}" ]; then
-    ${INSTALLER} -y install gettext python3 python3-devel
-fi
+make && make install
 
-# install neovim (stable)
-curl -LO ${github_url}/neovim/neovim/archive/refs/tags/stable.tar.gz
-tar -xzvf stable.tar.gz && rm stable.tar.gz
-pushd neovim-stable
-make CMAKE_BUILD_TYPE=RelWithDebInfo
-make install
-popd
-rm -r neovim-stable
+git clone https://github.com/fatih/vim-go.git ~/.vim/bundle/vim-go
 
-# install lvim (newest)
-curl -LO ${github_url}/LunarVim/LunarVim/archive/refs/heads/master.zip
-unzip master.zip && rm master.zip
-pushd LunarVim-master
-bash ./utils/installer/install.sh -y
-popd
-rm -r LunarVim-master
+## 当前: 配置 vim-go
+## https://www.xy1413.com/p/vim_go/
+# let g:go_info_mode='gopls'
+# let g:go_def_mode='gopls'
 
 popd

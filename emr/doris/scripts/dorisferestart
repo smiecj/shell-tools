@@ -1,0 +1,7 @@
+#!/bin/bash
+
+dorisfestop
+
+sleep 2
+
+dorisfestart

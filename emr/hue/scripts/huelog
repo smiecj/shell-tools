@@ -1,0 +1,7 @@
+#!/bin/bash
+
+pushd {hue_home}
+
+tail -f ./logs/runcpserver.log -n 100
+
+popd

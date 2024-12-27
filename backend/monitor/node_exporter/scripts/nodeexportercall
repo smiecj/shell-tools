@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export $(xargs < {node_exporter_home}/node_exporter.properties)
+
+curl http://localhost:${port}/metrics

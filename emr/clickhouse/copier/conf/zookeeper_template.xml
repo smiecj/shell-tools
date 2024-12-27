@@ -1,0 +1,9 @@
+<clickhouse>
+    <logger>
+        <level>trace</level>
+        <size>100M</size>
+        <count>3</count>
+    </logger>
+
+    <zookeeper>{zookeeper_replace_str}</zookeeper>
+</clickhouse>

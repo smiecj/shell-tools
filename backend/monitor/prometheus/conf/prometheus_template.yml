@@ -1,0 +1,18 @@
+global:
+  scrape_interval:     15s
+  evaluation_interval: 15s
+  external_labels:
+    cluster: {cluster_name}
+
+# Alertmanager
+{alertmanager}
+
+rule_files:
+  - '{prometheus_home}/rules/*.yml'
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+    - targets: [localhost:{port}]
+
+  {jobs}

@@ -10,6 +10,9 @@ if [ -f ${HOME}/.cargo/bin/rustc ]; then
     exit 0
 fi
 
+export RUSTUP_HOME=/opt/modules/rustup
+export CARGO_HOME=/opt/modules/cargo
+
 pushd /tmp
 
 curl --proto '=https' --tlsv1.2 -sSf ${rust_init_script} | sh -s -- -y

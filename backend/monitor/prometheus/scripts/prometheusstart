@@ -1,0 +1,7 @@
+#!/bin/bash
+
+export $(xargs < {prometheus_home}/prometheus.properties)
+
+pushd {prometheus_home}
+nohup {prometheus_home}/prometheus --storage.tsdb.retention.time=${tsdb_retention} --web.enable-lifecycle --config.file={prometheus_home}/prometheus.yml --web.listen-address=:${port} >> {prometheus_home}/prometheus.log 2>&1 &
+popd

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+nohup {code_server_home}/bin/code-server --config {code_server_home}/config.yaml >> {code_server_home}/codeserver.log 2>&1 &

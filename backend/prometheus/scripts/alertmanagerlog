@@ -1,3 +1,0 @@
-#!/bin/bash
-
-tail -f {alertmanager_home}/test.log

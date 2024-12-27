@@ -1,0 +1,3 @@
+#!/bin/bash
+
+tail -f /usr/local/apache2/logs/error_log

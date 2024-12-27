@@ -1,0 +1,46 @@
+#!/bin/bash
+set -eo pipefail
+
+pushd {prometheus_home}
+
+export $(xargs < prometheus.properties)
+
+cp prometheus_template.yml prometheus.yml
+
+# jobs
+
+jobs_replace_str=""
+
+# IFS='::' read -r -a job_arr <<< "${jobs}"
+job_arr=($(echo ${jobs} | sed "s#::#\n#g"))
+
+space_2="  "
+space_4="    "
+
+for current_job in ${job_arr[@]}
+do
+    current_job_parse_arr=($(echo ${current_job} | sed "s#__#\n#g"))
+    current_job_name=${current_job_parse_arr[0]}
+    current_job_targets=${current_job_parse_arr[1]}
+
+    jobs_replace_str="${jobs_replace_str}\n${space_2}- job_name: '${current_job_name}'\n${space_4}static_configs:\n${space_4}- targets: [${current_job_targets}]"
+done
+
+sed -i "s#{jobs}#${jobs_replace_str}#g" prometheus.yml
+
+# alertmanager
+alertmanager_replace_str=""
+if [ -n "${alertmanager_address}" ]; then
+  alertmanager_replace_str="alerting:\n${space_2}alertmanagers:\n${space_2}- static_configs:\n${space_4}- targets: [${alertmanager_address}]"
+fi
+
+sed -i "s#{alertmanager}#${alertmanager_replace_str}#g" prometheus.yml
+
+# other envs
+env_keys=`printenv | sed "s#=.*##g"`
+for current_env_key in ${env_keys[@]}
+do
+    sed -i "s#{${current_env_key}}#${!current_env_key}#g" prometheus.yml
+done
+
+popd

@@ -1,0 +1,3 @@
+export $(xargs < {superset_home}/superset.properties)
+
+ps -ef | grep "${conda_env_name}/bin/superset" | grep -v grep | awk '{print $2}' | xargs --no-run-if-empty kill -9

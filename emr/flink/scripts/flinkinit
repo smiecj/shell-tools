@@ -1,0 +1,39 @@
+#!/bin/bash
+set -eo pipefail
+
+export $(xargs < {flink_home}/conf/flink.properties)
+
+pushd {flink_home}/conf
+
+cp flink-conf-template.yaml flink-conf.yaml
+
+env_keys=`printenv | sed "s#=.*##g"`
+for current_env_key in ${env_keys[@]}
+do
+    current_env_value=${!current_env_key}
+    # null check: to prevent cdc ConfigurationUtils nullpointer exception
+    if [ -z "${current_env_value}" ]; then
+        # current_env_value="\"\""
+        sed -i "s#.*{${current_env_key}}.*##g" flink-conf.yaml
+    fi
+    sed -i "s#{${current_env_key}}#${current_env_value}#g" flink-conf.yaml
+done
+
+if [[ -n "${workers}" ]]; then
+    rm -f workers
+    worker_list=($(echo ${workers} | tr "," "\n" | uniq))
+    for current_worker in "${worker_list[@]}"; do
+        echo "${current_worker}" >> workers
+    done
+fi
+
+if [[ -n "${masters}" ]]; then
+    rm -f masters
+    master_list=($(echo ${masters} | tr "," "\n" | uniq))
+    for current_master in "${master_list[@]}"; do
+        # rest_port: fix start-cluster but webui-port is 0 problem
+        echo "${current_master}:${rest_port}" >> masters
+    done
+fi
+
+popd

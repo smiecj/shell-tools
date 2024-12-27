@@ -1,0 +1,3 @@
+#!/bin/bash
+
+tail -f {minio_home}/minio.log -n 100

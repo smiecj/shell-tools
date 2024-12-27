@@ -1,0 +1,11 @@
+#!/bin/bash
+
+export $(xargs < {mysql_home}/mysql.properties)
+
+if [ "true" == "${use_local_ld_library}" ]; then
+    export LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib64
+fi
+
+export PATH=/opt/modules/mysql/bin:$PATH
+
+mysql -h127.0.0.1 -P${port} -uroot -p${root_password}

@@ -1,5 +1,0 @@
-#!/bin/bash
-
-ps -ef | grep '{node_exporter_home}' | grep -v grep | awk '{print $2}' | xargs --no-run-if-empty kill -9
-
-nohup {node_exporter_home}/node_exporter --web.listen-address=":{node_exporter_port}" >> {node_exporter_home}/test.log 2>&1 &

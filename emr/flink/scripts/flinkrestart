@@ -1,0 +1,7 @@
+#!/bin/bash
+
+flinkstop
+
+sleep 1
+
+flinkstart

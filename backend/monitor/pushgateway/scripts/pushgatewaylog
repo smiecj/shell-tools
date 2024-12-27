@@ -1,0 +1,3 @@
+#!/bin/bash
+
+tail -f {pushgateway_home}/pushgateway.log

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+nodeexporterstop
+
+sleep 2
+
+nodeexporterstart

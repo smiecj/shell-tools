@@ -1,0 +1,42 @@
+<clickhouse>
+    <remote_servers>
+        {source_cluster}
+
+        {target_cluster}
+    </remote_servers>
+
+    <max_workers>1</max_workers>
+
+    <settings_pull>
+        <readonly>1</readonly>
+    </settings_pull>
+
+    <settings_push>
+        <readonly>0</readonly>
+    </settings_push>
+
+    <settings>
+        <connect_timeout>3</connect_timeout>
+        <distributed_foreground_insert>1</distributed_foreground_insert>
+    </settings>
+
+    <tables>
+        <table_hits>
+            <cluster_pull>{clickhouse_copier_source_cluster_name}</cluster_pull>
+            <database_pull>{clickhouse_copier_source_database}</database_pull>
+            <table_pull>{clickhouse_copier_source_table}</table_pull>
+
+            <cluster_push>{clickhouse_copier_target_cluster_name}</cluster_push>
+            <database_push>{clickhouse_copier_target_database}</database_push>
+            <table_push>{clickhouse_copier_target_table}</table_push>
+
+            <engine>{create_table_stmt}</engine>
+
+            <sharding_key>rand()</sharding_key>
+
+            {clickhouse_copier_enabled_partitions}
+
+            <number_of_splits>{clickhouse_copier_num_splits}</number_of_splits>
+        </table_hits>
+    </tables>
+</clickhouse>

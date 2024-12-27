@@ -1,0 +1,3 @@
+#!/bin/bash
+
+tail -f {node_exporter_home}/node_exporter.log

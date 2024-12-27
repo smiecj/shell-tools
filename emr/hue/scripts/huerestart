@@ -1,0 +1,5 @@
+huestop
+
+sleep 1
+
+huestart

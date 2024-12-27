@@ -1,0 +1,29 @@
+#!/bin/bash
+set -eo pipefail
+
+pushd {superset_home}
+
+export $(xargs < {superset_home}/superset.properties)
+
+cp superset_config_template.py superset_config.py
+
+# init superset config
+
+export SUPERSET_SECRET_KEY=`echo "${secret_key}" | base64`
+
+env_keys=`printenv | sed "s#=.*##g"`
+for current_env_key in ${env_keys[@]}
+do
+    sed -i "s#{${current_env_key}}#${!current_env_key}#g" superset_config.py
+done
+
+source ${CONDA_HOME}/bin/activate ${conda_env_name}
+export FLASK_APP=superset
+
+# init db
+superset db upgrade
+superset fab create-admin --username ${admin_user} --firstname ${admin_first_name} --lastname ${admin_last_name} --email ${admin_email} --password ${admin_password}
+superset load_examples
+superset init
+
+popd

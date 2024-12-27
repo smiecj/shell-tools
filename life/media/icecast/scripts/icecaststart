@@ -1,0 +1,9 @@
+#!/bin/bash
+
+export $(xargs < {icecast_home}/icecast.properties)
+
+if [ -f /usr/local/bin/ezstream ]; then
+    export LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib64
+fi
+
+su icecast2 -c "nohup ${bin} -b -c {icecast_home}/icecast.xml > /dev/null 2>&1 &"

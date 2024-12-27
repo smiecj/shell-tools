@@ -1,0 +1,10 @@
+#!/bin/bash
+
+export $(xargs < {superset_home}/superset.properties)
+
+source ${CONDA_HOME}/bin/activate ${conda_env_name}
+
+export FLASK_APP=superset
+export SUPERSET_CONFIG_PATH={superset_home}/superset_config.py
+
+nohup superset run -h 0.0.0.0 -p ${port} --with-threads --reload >> {superset_home}/superset.log 2>&1 &

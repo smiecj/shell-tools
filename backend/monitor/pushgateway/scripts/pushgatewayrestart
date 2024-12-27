@@ -1,0 +1,7 @@
+#!/bin/bash
+
+pushgatewaystop
+
+sleep 2
+
+pushgatewaystart

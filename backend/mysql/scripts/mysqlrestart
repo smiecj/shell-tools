@@ -1,0 +1,5 @@
+mysqlstop
+
+sleep 1
+
+mysqlstart

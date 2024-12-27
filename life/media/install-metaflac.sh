@@ -5,7 +5,10 @@ cd /tmp
 
 ## metaflac
 cd /tmp
-${INSTALLER} -y install gettext automake libtool
+${INSTALLER} -y install gettext automake libtool pkg-config
+if [ "apt" == "${INSTALLER}" ]; then
+    ${INSTALLER} -y install libtool-bin
+fi
 git clone ${github_url}/xiph/flac
 cd flac
 git checkout tags/${flac_version}

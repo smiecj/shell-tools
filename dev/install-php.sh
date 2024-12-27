@@ -24,7 +24,7 @@ tar -xzvf ${php_pkg}
 
 pushd ${php_folder}
 
-./configure -prefix=${prefix}
+./configure -prefix=${PREFIX}
 make && make install
 
 popd

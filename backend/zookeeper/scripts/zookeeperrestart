@@ -1,0 +1,7 @@
+#!/bin/bash
+
+zookeeperstop
+
+sleep 1
+
+zookeeperstart

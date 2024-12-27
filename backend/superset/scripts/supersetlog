@@ -1,0 +1,1 @@
+tail -f {superset_home}/superset.log -n 100

@@ -1,0 +1,1142 @@
+[desktop]
+  secret_key=
+  secret_key_script=
+
+  http_host=0.0.0.0
+  http_port={http_port}
+
+  hue_load_balancer=
+
+  time_zone={timezone}
+
+  django_debug_mode=false
+
+  dev=true
+
+  db_logging=false
+
+  send_dbug_messages=false
+
+  http_500_debug_mode=true
+
+  django_server_email=''
+
+  django_email_backend=django.core.mail.backends.console.EmailBackend
+
+  use_cherrypy_server=false
+
+  gunicorn_work_class=gthread # gthread : fix gunicorn start problem
+
+  gunicorn_number_of_workers=1
+
+  server_user=hue
+  server_group=hue
+
+  ## default_user=hue
+
+  ## default_hdfs_superuser=hdfs
+
+  ## enable_server=yes
+
+  ## cherrypy_server_threads=50
+
+  ## sasl_max_buffer=2097152
+
+  ## enable_smart_thrift_pool=false
+
+  ## ssl_certificate=
+
+  ## ssl_private_key=
+
+  ## ssl_certificate_chain=
+
+  ## ssl_password=
+
+  ## ssl_password_script=
+
+  ## ssl_no_renegotiation=python.version >= 3.7
+
+  ## secure_content_type_nosniff=true
+
+  ## secure_browser_xss_filter=true
+
+  ## secure_content_security_policy="script-src 'self' 'unsafe-inline' 'unsafe-eval' *.google-analytics.com *.doubleclick.net data:;img-src 'self' *.google-analytics.com *.doubleclick.net http://*.tile.osm.org *.tile.osm.org *.gstatic.com data:;style-src 'self' 'unsafe-inline' fonts.googleapis.com;connect-src 'self';frame-src *;child-src 'self' data: *.vimeo.com;object-src 'none'"
+
+  ## secure_ssl_redirect=False
+  ## secure_redirect_host=0.0.0.0
+  ## secure_redirect_exempt=[]
+  ## secure_hsts_seconds=31536000
+  ## secure_hsts_include_subdomains=true
+
+  ## ssl_cipher_list=ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA
+
+  ## ssl_cacerts=/etc/hue/cacerts.pem
+
+  ## ssl_validate=true
+
+  ## auth_username=hue
+  ## auth_password=
+
+  ## default_site_encoding=utf-8
+
+  collect_usage=false
+
+  ## leaflet_tile_layer=http://{s}.tile.osm.org/{z}/{x}/{y}.png
+
+  ## leaflet_tile_layer_attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+
+  ## leaflet_map_options='{}'
+
+  ## leaflet_tile_layer_options='{}'
+
+  ## http_x_frame_options=SAMEORIGIN
+
+  ## use_x_forwarded_host=true
+
+  ## secure_proxy_ssl_header=false
+
+  ## middleware=
+
+  ## redirect_whitelist=^(\/[a-zA-Z0-9]+.*|\/)$
+
+  app_blacklist={app_blacklist}
+
+  ## cluster_id='default'
+
+  ## use_new_editor=true
+
+  ## enable_download=true
+
+  ## enable_sharing=true
+
+  ## enable_sql_syntax_check=true
+
+  ## use_new_charts=false
+
+  ## enable_organizations=false
+
+  ## editor_autocomplete_timeout=30000
+
+  ## use_default_configuration=false
+
+  ## audit_event_log_dir=
+
+  ## audit_log_max_file_size=100MB
+
+  ## rest_conn_timeout=120
+
+  ## allowed_hosts="*"
+
+  ## enable_django_debug_tool=false
+
+  ## django_debug_tool_users=
+
+  ## rest_response_size=2000
+
+  enable_prometheus={enable_prometheus}
+
+  ## enable_gist=true
+
+  ## enable_gist_preview=true
+
+  ## enable_link_sharing=true
+
+  ## disable_local_storage = false
+
+  # Administrators
+#  [[django_admins]]
+#    [[[admin-1]]]
+#     name=Hue
+#     email=hue@localhost.com
+
+  [[custom]]
+
+    ## banner_top_html='<div style="padding: 4px; text-align: center; background-color: #003F6C; color: #DBE8F1">This is Hue 4 Beta! - Please feel free to email any feedback / questions to <a href="mailto:team@gethue.com" target="_blank" style="color: #FFF; font-weight: bold">team@gethue.com</a> or <a href="https://twitter.com/gethue" target="_blank" style="color: #FFF; font-weight: bold">@gethue</a>.</div>'
+
+    ## login_splash_html=<h4>GetHue.com</h4><br/><br/>WARNING: You have accessed a computer managed by GetHue. You are required to have authorization from GetHue before you proceed.
+
+    ## cacheable_ttl=864000000
+
+    ## logo_svg=
+
+  [[auth]]
+
+    backend={auth_backend}
+
+    ## user_aug=desktop.auth.backend.DefaultUserAugmentor
+
+    ## pam_service=login
+
+    ## remote_user_header=HTTP_REMOTE_USER
+
+    ## ignore_username_case=true
+
+    ## force_username_lowercase=true
+
+    ## force_username_uppercase=false
+
+    ## expires_after=-1
+
+    ## expire_superusers=true
+
+    idle_session_timeout=-1
+
+    ## change_default_password=false
+
+    ## login_failure_limit=3
+
+    ## login_lock_out_at_failure=false
+
+    ## login_cooloff_time=None
+
+    ## login_lock_out_use_user_agent=false
+
+    ## login_lock_out_by_combination_user_and_ip=false
+
+    ## behind_reverse_proxy=false
+
+    ## reverse_proxy_header=HTTP_X_FORWARDED_FOR
+
+  [[ldap]]
+
+    ## base_dn="DC=mycompany,DC=com"
+
+    ## ldap_url=ldap://auth.mycompany.com
+
+    ## nt_domain=mycompany.com
+
+    ## ldap_cert=
+    ## use_start_tls=true
+
+    ## bind_dn="CN=ServiceAccount,DC=mycompany,DC=com"
+
+    ## bind_password=
+
+    ## bind_password_script=
+
+    ## ldap_username_pattern="uid=<username>,ou=People,dc=mycompany,dc=com"
+
+    ## create_users_on_login = true
+
+    ## sync_groups_on_login=true
+
+    ## login_groups=
+
+    ## ignore_username_case=true
+
+    ## force_username_lowercase=true
+
+    ## force_username_uppercase=false
+
+    ## search_bind_authentication=true
+
+    ## subgroups=suboordinate
+
+    ## nested_members_search_depth=10
+
+    ## follow_referrals=false
+
+    ## debug=false
+
+    ## debug_level=255
+
+    ## trace_level=0
+
+    [[[users]]]
+
+      ## user_filter="objectclass=*"
+
+      ## user_name_attr=sAMAccountName
+
+    [[[groups]]]
+
+      ## group_filter="objectclass=*"
+
+      ## group_name_attr=cn
+
+      ## group_member_attr=members
+
+    [[[ldap_servers]]]
+
+      ## [[[[mycompany]]]]
+
+        ## base_dn="DC=mycompany,DC=com"
+
+        ## ldap_url=ldap://auth.mycompany.com
+
+        ## nt_domain=mycompany.com
+
+        ## ldap_cert=
+        ## use_start_tls=true
+
+        ## bind_dn="CN=ServiceAccount,DC=mycompany,DC=com"
+
+        ## bind_password=
+
+        ## bind_password_script=
+
+        ## ldap_username_pattern="uid=<username>,ou=People,dc=mycompany,dc=com"
+
+        ## search_bind_authentication=true
+
+        ## follow_referrals=false
+
+        ## debug=false
+
+        ## debug_level=255
+
+        ## trace_level=0
+
+        ## [[[[[users]]]]]
+
+          ## user_filter="objectclass=Person"
+
+          ## user_name_attr=sAMAccountName
+
+        ## [[[[[groups]]]]]
+
+          ## group_filter="objectclass=groupOfNames"
+
+          ## group_name_attr=cn
+
+  [[vcs]]
+
+  ## [[[git-read-only]]]
+      # remote_url=https://github.com/cloudera/hue/tree/master
+
+      # api_url=https://api.github.com
+  ## [[[github]]]
+
+      # remote_url=https://github.com/cloudera/hue/tree/master
+
+      # api_url=https://api.github.com
+
+      # client_id=
+
+      # client_secret=
+  ## [[[svn]]
+      # remote_url=https://github.com/cloudera/hue/tree/master
+
+      # api_url=https://api.github.com
+
+      # client_id=
+
+      # client_secret=
+
+  [[database]]
+    engine={db_engine}
+    host={db_host}
+    port={db_port}
+    user={db_user}
+    password={db_password}
+    conn_max_age=0
+    # password_script=/path/script
+    name={db_db}
+    ## options={}
+
+  [[session]]
+    ## cookie_name=sessionid
+
+    ## enable_test_cookie=true
+
+    ## ttl=1209600
+
+    ## secure=false
+
+    ## http_only=true
+
+    ## expire_at_browser_close=false
+
+    ## concurrent_user_session_limit=0
+
+    ## trusted_origins=.cloudera.com
+
+  [[smtp]]
+
+    host=localhost
+    port=25
+    user=
+    password=
+
+    tls=no
+
+    ## default_from_email=hue@localhost
+
+  [[knox]]
+
+    ## knox_principal=knox1,knox2
+
+    ## knox_ports=80,8443
+
+  [[kerberos]]
+
+    ## hue_keytab=
+    ## hue_principal=hue/hostname.foo.com
+    ## REINIT_FREQUENCY=3600
+    ## ccache_path=/var/run/hue/hue_krb5_ccache
+    ## kinit_path=/path/to/kinit
+    ## krb5_renewlifetime_enabled=true
+    ## mutual_authentication="OPTIONAL" or "REQUIRED" or "DISABLED"
+
+  [[oauth]]
+    ## consumer_key=XXXXXXXXXXXXXXXXXXXXX
+
+    ## consumer_secret=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+    ## request_token_url=https://api.twitter.com/oauth/request_token
+
+    ## access_token_url=https://api.twitter.com/oauth/access_token
+
+    ## authenticate_url=https://api.twitter.com/oauth/authorize
+
+  [[oidc]]
+    ## oidc_rp_client_id=XXXXXXXXXXXXXXXXXXXXX
+
+    ## oidc_rp_client_secret=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+    ## oidc_op_authorization_endpoint=https://keycloak.example.com/auth/realms/Cloudera/protocol/openid-connect/auth
+
+    ## oidc_op_token_endpoint=https://keycloak.example.com/auth/realms/cloudera/protocol/openid-connect/token
+
+    ## oidc_op_user_endpoint=https://keycloak.example.com/auth/realms/cloudera/protocol/openid-connect/userinfo
+
+    ## oidc_rp_idp_sign_key=/path/to/key_file
+
+    ## oidc_op_jwks_endpoint=https://keycloak.example.com/auth/realms/Cloudera/protocol/openid-connect/certs
+
+    ## oidc_verify_ssl=true
+
+    ## login_redirect_url=https://localhost:8888/oidc/callback/
+
+    ## logout_redirect_url=https://keycloak.example.com/auth/realms/cloudera/protocol/openid-connect/logout
+
+    ## login_redirect_url_failure=https://localhost:8888/hue/oidc_failed/
+
+    ## create_users_on_login=true
+
+    ## oidc_username_attribute=preferred_username
+
+    ## superuser_group=hue_superusers
+
+  [[metrics]]
+
+   ## enable_web_metrics=True
+
+   ## location=/var/log/hue/metrics.json
+
+   ## collection_interval=30000
+
+  [[slack]]
+    ## slack_client_id=
+    ## slack_client_secret=
+    ## slack_verification_token=
+    ## slack_bot_user_token=
+
+    ## is_enabled=true
+
+    ## share_from_editor=true
+
+  [[tracing]]
+
+  # enabled=false
+
+  # trace_all=false
+
+  [[task_server]]
+
+   ## enabled=False
+
+   ## beat_enabled=False
+
+   ## fetch_result_limit=2000
+
+   ## result_storage='{"backend": "django.core.files.storage.FileSystemStorage", "properties": {"location": "./logs"}}'
+
+   ## broker_url=amqp://guest:guest@localhost//
+
+   ## celery_result_backend=file:///$HUE_ROOT/logs
+
+   ## celeryd_opts='--time-limit=300'
+
+   ## execution_storage='{"BACKEND": "django.core.cache.backends.locmem.LocMemCache", "LOCATION": "celery-hue"}'
+
+   [[gc_accounts]]
+      [[[default]]]
+        # json_credentials=None
+
+
+  [[raz]]
+  # is_enabled=false
+
+  # api_url=https://localhost:8080
+
+  # api_authentication=KERBEROS
+
+[notebook]
+
+  # show_notebooks=true
+
+  # enable_external_statements=false
+
+  # enable_batch_execute=false
+
+  # enable_sql_indexer=false
+
+  # enable_presentation=true
+
+  # enable_query_builder=false
+
+  # enable_query_scheduling=false
+
+  # enable_dbproxy_server=true
+
+  # dbproxy_extra_classpath=
+
+  # interpreters_shown_on_wheel=
+
+  # default_limit=5000
+
+  [[interpreters]]
+
+{interpreters}
+
+[dashboard]
+
+  ## is_enabled=true
+
+  ## has_sql_enabled=false
+
+  ## has_query_builder_enabled=false
+
+  ## has_report_enabled=false
+
+  ## use_gridster=true
+
+  ## has_widget_filter=false
+
+  ## has_tree_widget=false
+
+  [[engines]]
+
+    #  [[[solr]]]
+    #  Requires Solr 6+
+    ##  analytics=true
+    ##  nesting=false
+
+    #  [[[sql]]]
+    ##  analytics=true
+    ##  nesting=false
+
+
+[hadoop]
+
+  [[hdfs_clusters]]
+
+    [[[default]]]
+      fs_defaultfs=hdfs://{hdfs_namenode_address}
+
+      ## logical_name=
+
+      webhdfs_url=http://{hdfs_webhdfs_address}/webhdfs/v1
+
+      ## security_enabled=false
+
+      ## ssl_cert_ca_verify=True
+
+      hadoop_conf_dir=/etc/hadoop/conf
+
+      ## is_enabled=true
+
+  [[yarn_clusters]]
+
+    [[[default]]]
+      resourcemanager_host={yarn_resourcemanager_host}
+
+      resourcemanager_port={yarn_resourcemanager_port}
+
+      submit_to=True
+
+      proxy_api_url=http://{yarn_proxyserver_address}
+
+      history_server_api_url=http://{yarn_historyserver_address}
+
+      spark_history_server_url=http://{yarn_spark_historyserver_address}
+
+      resourcemanager_api_url=http://{yarn_resourcemanager_api_address}
+
+      ## spark_history_server_security_enabled=false
+
+      ## ssl_cert_ca_verify=True
+
+    # [[[ha]]]
+      ## logical_name=my-rm-name
+
+      ## submit_to=True
+
+      ## resourcemanager_api_url=http://localhost:8088
+
+[beeswax]
+
+  hive_server_host={hive_server_host}
+
+  hive_server_port={hive_server_port}
+
+  ## hive_server_http_port=10001
+
+  ## llap_server_host = localhost
+
+  ## llap_server_port = 10500
+
+  ## llap_server_thrift_port = 10501
+
+  ## hive_discovery_llap = true
+
+  ## hive_discovery_llap_ha = false
+
+  ## hive_discovery_llap_znode = /hiveserver2-hive2
+
+  ## hive_discovery_hs2 = true
+
+  ## hive_discovery_hiveserver2_znode = /hiveserver2
+
+  ## cache_timeout = 60
+
+  hive_metastore_host={hive_metastore_host}
+
+  hive_metastore_port={hive_metastore_port}
+
+  hive_conf_dir=/etc/hive/conf
+  
+  server_conn_timeout = 120
+
+  max_number_of_sessions = 10
+
+  ## use_get_log_api=false
+
+  ## list_partitions_limit=10000
+
+  ## query_partitions_limit=10
+
+  ## download_row_limit=100000
+
+  ## download_bytes_limit=-1
+
+  ## close_queries=false
+
+  ## max_number_of_sessions=1
+
+  ## close_sessions=max_number_of_sessions != 1
+
+  thrift_version=7
+
+  # A comma-separated list of white-listed Hive configuration properties that users are authorized to set.
+  ## config_whitelist=hive.map.aggr,hive.exec.compress.output,hive.exec.parallel,hive.execution.engine,mapreduce.job.queuename
+
+  # Override the default desktop username and password of the hue user used for authentications with other services.
+  # e.g. Used for LDAP/PAM pass-through authentication.
+  ## auth_username=hue
+  ## auth_password=
+
+  # Use SASL framework to establish connection to host.
+  ## use_sasl=false
+
+  [[ssl]]
+    # Path to Certificate Authority certificates.
+    ## cacerts=/etc/hue/cacerts.pem
+
+    # Choose whether Hue should validate certificates received from the server.
+    ## validate=true
+
+
+###########################################################################
+# Settings to configure Metastore
+###########################################################################
+
+[metastore]
+  # Flag to turn on the new version of the create table wizard.
+  ## enable_new_create_table=true
+
+  # Flag to force all metadata calls (e.g. list tables, table or column details...) to happen via HiveServer2 if available instead of Impala.
+  ## force_hs2_metadata=false
+
+  # Choose whether to show the table ERD component. Default false
+  ## show_table_erd=false
+
+###########################################################################
+# Settings to configure Impala
+###########################################################################
+
+[impala]
+  # Host of the Impala Server (one of the Impalad)
+  ## server_host=localhost
+
+  # Port of the Impala Server
+  ## server_port=21050
+
+  # Endpoint of the Impala Proxy Server, for example: '/endpoint'
+  # Note that SERVER_PORT will be used when set.
+  ## proxy_endpoint=
+
+  # URL of the Impala Coordinator Server.
+  ## coordinator_url=localhost:25000
+
+  # Kerberos principal
+  ## impala_principal=impala/hostname.foo.com
+
+  # Turn on/off impersonation mechanism when talking to Impala
+  ## impersonation_enabled=False
+
+  # Number of initial rows of a result set to ask Impala to cache in order
+  # to support re-fetching them for downloading them.
+  # Set to 0 for disabling the option and backward compatibility.
+  ## querycache_rows=50000
+
+  # Timeout in seconds for thrift calls
+  ## server_conn_timeout=120
+
+  # Hue will try to close the Impala query when the user leaves the editor page.
+  # This will free all the query resources in Impala, but also make its results inaccessible.
+  ## close_queries=true
+
+  # If > 0, the query will be timed out (i.e. cancelled) if Impala does not do any work
+  # (compute or send back results) for that query within QUERY_TIMEOUT_S seconds.
+  ## query_timeout_s=300
+
+  # If > 0, the session will be timed out (i.e. cancelled) if Impala does not do any work
+  # (compute or send back results) for that session within SESSION_TIMEOUT_S seconds (default 15 min).
+  ## session_timeout_s=900
+
+  # Override the desktop default username and password of the hue user used for authentications with other services.
+  # e.g. Used for LDAP/PAM pass-through authentication.
+  ## auth_username=hue
+  ## auth_password=
+
+  # Username and password for Impala Daemon Web interface for getting Impala queries in JobBrowser
+  ## daemon_api_username=
+  ## daemon_api_password=
+  # Execute this script to produce the password to avoid entering in clear text
+  ## daemon_api_password_script=
+  # Set to 'digest' when webserver_htpassword_user and webserver_htpassword_password are set for Impala, or set to
+  # 'basic' if webserver_require_ldap is set
+  ## daemon_api_auth_scheme=digest
+
+  # A comma-separated list of white-listed Impala configuration properties that users are authorized to set.
+  ## config_whitelist=debug_action,explain_level,mem_limit,optimize_partition_key_scans,query_timeout_s,request_pool
+
+  # Path to the impala configuration dir which has impalad_flags file
+  ## impala_conf_dir=${HUE_CONF_DIR}/impala-conf
+
+  # Use SASL framework to establish connection to host.
+  ## use_sasl=true
+
+  # Use Thrift over HTTP for the transport mode.
+  ## use_thrift_http=false
+
+  [[ssl]]
+    # SSL communication enabled for this server.
+    ## enabled=false
+
+    # Path to Certificate Authority certificates.
+    ## cacerts=/etc/hue/cacerts.pem
+
+    # Choose whether Hue should validate certificates received from the server.
+    ## validate=true
+
+[spark]
+  ## livy_server_url=http://localhost:8998
+
+  ## security_enabled=false
+
+  ## csrf_enabled=false
+
+  ## sql_server_host=localhost
+
+  ## sql_server_port=10000
+
+  ## ssl_cert_ca_verify=true
+
+  ## use_sasl=false
+
+[oozie]
+  ## local_data_dir=..../examples
+
+  ## sample_data_dir=...thirdparty/sample_data
+
+  ## remote_data_dir=/user/hue/oozie/workspaces
+
+  ## oozie_jobs_count=100
+
+  ## enable_cron_scheduling=true
+
+  ## enable_document_action=true
+
+  ## enable_oozie_backend_filtering=true
+
+  ## enable_impala_action=false
+
+  ## enable_altus_action=false
+
+[filebrowser]
+  ## archive_upload_tempdir=/tmp
+
+  ## show_download_button=true
+
+  ## show_upload_button=true
+
+  ## enable_extract_uploaded_archive=true
+
+  ## redirect_download=false
+
+  ## remote_storage_home=s3a://gethue
+
+[pig]
+  ## local_sample_dir=/usr/share/hue/apps/pig/examples
+
+  ## remote_data_dir=/user/hue/pig/examples
+
+[sqoop]
+  ## is_enabled=false
+
+  ## server_url=http://localhost:12000/sqoop
+
+  ## sqoop_conf_dir=/etc/sqoop2/conf
+
+  ## ssl_cert_ca_verify=true
+
+[proxy]
+  ## whitelist=(localhost|127\.0\.0\.1):(50030|50070|50060|50075)
+
+  ## blacklist=
+
+[hbase]
+  hbase_clusters={hbase_clusters_str}
+
+  hbase_conf_dir=/etc/hbase/conf
+
+  ## truncate_limit = 500
+
+  thrift_transport=buffered
+
+  use_doas = true
+
+  ## ssl_cert_ca_verify=true
+
+
+[search]
+
+  ## solr_url=http://localhost:8983/solr/
+
+  ## security_enabled=false
+
+  ## empty_query=*:*
+
+[libsolr]
+
+  ## ssl_cert_ca_verify=true
+
+  ## solr_zk_path=/solr
+
+[indexer]
+
+  ## config_indexer_libs_path=/tmp/smart_indexer_lib
+
+  ## config_jdbc_libs_path=/user/oozie/libext/jdbc_drivers
+
+  ## config_jars_libs_path=/user/oozie/libext/libs
+
+  ## enable_scalable_indexer=true
+
+  ## enable_sqoop=true
+
+  ## enable_kafka=false
+
+  ## enable_direct_upload=true
+
+[jobsub]
+
+  ## local_data_dir=..../data
+
+  ## sample_data_dir=...thirdparty/sample_data
+
+[jobbrowser]
+  ## share_jobs=true
+
+  ## disable_killing_jobs=false
+
+  ## log_offset=-1000000
+
+  ## max_job_fetch=500
+
+  ## enable_v2=true
+
+  ## enable_query_browser=true
+
+  ## enable_hive_query_browser=false
+
+  ## enable_queries_list=false
+
+  ## use_proxy=true
+
+  [[query_store]]
+    ##server_url=http://localhost:8080/
+
+[security]
+
+  ## hive_v1=true
+
+  ## hive_v2=false
+
+  ## solr_v2=true
+
+[zookeeper]
+
+  [[clusters]]
+
+    [[[default]]]
+
+      host_ports={zookeeper_address}
+
+      ## rest_url=http://localhost:9998
+
+      principal_name=zookeeper
+
+[useradmin]
+
+  ## home_dir_permissions=0755
+
+  ## use_home_dir_permissions=true
+
+  ## default_user_group=default
+
+  [[password_policy]]
+    ## is_enabled=false
+    ## pwd_regex="^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W_]){1,}).{8,}$"
+    ## pwd_hint="The password must be at least 8 characters long, and must contain both uppercase and lowercase letters, at least one number, and at least one special character."
+    ## pwd_error_message="The password must be at least 8 characters long, and must contain both uppercase and lowercase letters, at least one number, and at least one special character."
+
+[liboozie]
+  ## oozie_url=http://localhost:11000/oozie
+
+  ## security_enabled=false
+
+  ## remote_deployement_dir=/user/hue/oozie/deployments
+
+[aws]
+  ## has_iam_detection=false
+
+  [[aws_accounts]]
+    ## [[[default]]]
+      ## access_key_id=
+      ## secret_access_key=
+      ## security_token=
+
+      ## access_key_id_script=/path/access_key_id.sh
+
+      ## secret_access_key_script=/path/secret_access_key.sh
+
+      ## allow_environment_credentials=yes
+
+      ## region=us-east-1
+
+      ## host=
+
+      ## proxy_address=
+      ## proxy_port=8080
+      ## proxy_user=
+      ## proxy_pass=
+
+      ## is_secure=true
+
+      ## calling_format=boto.s3.connection.OrdinaryCallingFormat
+
+      ## key_expiry=14400
+
+
+[azure]
+  [[azure_accounts]]
+    [[[default]]]
+      ## client_id=
+      ## client_id_script=/path/client_id.sh
+      ## client_secret=
+      ## client_secret_script=/path/client_secret.sh
+      ## tenant_id=
+      ## tenant_id_script=/path/tenant_id.sh
+
+  [[adls_clusters]]
+    [[[default]]]
+      ## fs_defaultfs=adl://<account_name>.azuredatalakestore.net
+      ## webhdfs_url=https://<account_name>.azuredatalakestore.net/webhdfs/v1
+
+  [[abfs_clusters]]
+    [[[default]]]
+      ## fs_defaultfs=abfss://<container_name>@<account_name>.dfs.core.windows.net
+      ## webhdfs_url=https://<container_name>@<account_name>.dfs.core.windows.net
+
+[libsentry]
+  ## hostname=localhost
+
+  ## port=8038
+
+  ## sentry_conf_dir=/etc/sentry/conf
+
+  ## privilege_checker_caching=300
+
+
+[libzookeeper]
+  ## ensemble=localhost:2181
+
+  ## principal_name=zookeeper
+
+[librdbms]
+  [[databases]]
+
+[libsaml]
+  ## xmlsec_binary=/usr/local/bin/xmlsec1
+
+  ## entity_id="<base_url>/saml2/metadata/"
+
+  ## create_users_on_login=true
+
+  ## required_attributes=uid
+
+  ## optional_attributes=
+
+  ## metadata_file=
+
+  ## key_file=
+
+  ## cert_file=
+
+  ## accepted_time_diff=0
+
+  ## key_file_password=/path/key
+
+  ## key_file_password_script=/path/pwd.sh
+
+  ## user_attribute_mapping={'uid': ('username', )}
+
+  ## authn_requests_signed=false
+
+  ## want_response_signed=false
+
+  ## want_assertions_signed=false
+
+  ## logout_requests_signed=false
+
+  ## username_source=attributes
+
+  ## logout_enabled=true
+
+  ## required_groups=
+
+  ## required_groups_attribute=groups
+
+[liboauth]
+
+  ## consumer_key_twitter=
+  ## consumer_key_google=
+  ## consumer_key_facebook=
+  ## consumer_key_linkedin=
+
+  ## consumer_secret_twitter=
+  ## consumer_secret_google=
+  ## consumer_secret_facebook=
+  ## consumer_secret_linkedin=
+
+  ## request_token_url_twitter=https://api.twitter.com/oauth/request_token
+  ## request_token_url_google=https://accounts.google.com/o/oauth2/auth
+  ## request_token_url_linkedin=https://www.linkedin.com/uas/oauth2/authorization
+  ## request_token_url_facebook=https://graph.facebook.com/oauth/authorize
+
+  ## access_token_url_twitter=https://api.twitter.com/oauth/access_token
+  ## access_token_url_google=https://accounts.google.com/o/oauth2/token
+  ## access_token_url_facebook=https://graph.facebook.com/oauth/access_token
+  ## access_token_url_linkedin=https://api.linkedin.com/uas/oauth2/accessToken
+
+  ## authenticate_url_twitter=https://api.twitter.com/oauth/authorize
+  ## authenticate_url_google=https://www.googleapis.com/oauth2/v1/userinfo?access_token=
+  ## authenticate_url_facebook=https://graph.facebook.com/me?access_token=
+  ## authenticate_url_linkedin=https://api.linkedin.com/v1/people/~:(email-address)?format=json&oauth2_access_token=
+
+  ## username_map={}
+
+  ## whitelisted_domains_google=
+
+[kafka]
+  [[kafka]]
+    ## is_enabled=false
+
+    ## ksql_api_url=http://127.0.0.1:8088
+
+[metadata]
+
+  [[manager]]
+    ## api_url=http://localhost:7180/api
+
+  [[optimizer]]
+    ## mode=off
+
+    ## interface=navopt
+
+    ## hostname=navoptapi.us-west-1.optimizer.altus.cloudera.com
+
+    ## auth_key_id=e0819f3a-1e6f-4904-be69-5b704bacd1245
+
+    ## auth_key_secret='-----BEGIN PRIVATE KEY....'
+
+    ## auth_key_secret_script=/path/to/script.sh
+
+    ## tenant_id=
+
+    ## apply_sentry_permissions=False
+
+    ## cacheable_ttl=864000000
+
+    ## auto_upload_queries=true
+
+    ## auto_upload_ddl=true
+
+    ## auto_upload_stats=false
+
+    ## query_history_upload_limit=10000
+
+  [[catalog]]
+    ## interface=atlas
+    ## api_url=http://localhost:21000/atlas/v2
+
+    ## server_user=hue
+    ## server_password=
+
+    ## search_cluster=
+
+    ## kerberos_enabled=core_site.is_kerberos_enabled()
+
+    ## conf_dir=HUE_CONF_DIR/hive-conf
+
+  [[navigator]]
+    ## api_url=http://localhost:7187/api
+
+    ## navmetadataserver_auth_type=CMDB
+
+    ## navmetadataserver_cmdb_user=hue
+    ## navmetadataserver_cmdb_password=
+    # navmetadataserver_cmdb_password_script=
+
+    ## navmetadataserver_ldap_user=hue
+    ## navmetadataserver_ldap_ppassword=
+    ## navmetadataserver_ldap_password_script=
+
+    ## navmetadataserver_saml_user=hue
+    ## SAML password of the user used for authentication.
+    ## navmetadataserver_saml_password_script=
+
+    ## apply_sentry_permissions=False
+
+    ## fetch_size_search=450
+
+    ## fetch_size_search_interactive=450
+
+    ## enable_file_search=false
+
+  [[prometheus]]
+    ## api_url=http://localhost:9090/api

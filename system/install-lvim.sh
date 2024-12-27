@@ -14,7 +14,7 @@ source ${HOME}/.profile
 
 pushd /tmp
 
-${INSTALLER} -y install curl wget zip unzip make cmake git
+${INSTALLER} -y install curl wget zip unzip make cmake
 if [ "yum" == "${INSTALLER}" ]; then
     ${INSTALLER} -y install gettext python3 python3-devel
 fi

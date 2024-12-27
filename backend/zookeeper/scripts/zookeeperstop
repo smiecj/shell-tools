@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source /etc/profile
+
+{zookeeper_home}/bin/zkServer.sh stop

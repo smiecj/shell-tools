@@ -1,0 +1,57 @@
+<icecast>
+    <location>Earth</location>
+    <admin>icemaster@localhost</admin>
+
+    <limits>
+        <clients>100</clients>
+        <sources>2</sources>
+        <queue-size>524288</queue-size>
+        <client-timeout>30</client-timeout>
+        <header-timeout>15</header-timeout>
+        <source-timeout>10</source-timeout>
+        <burst-on-connect>1</burst-on-connect>
+        <burst-size>65535</burst-size>
+    </limits>
+
+    <authentication>
+        <source-password>{source_password}</source-password>
+        <relay-password>hackme</relay-password>
+
+        <admin-user>admin</admin-user>
+        <admin-password>{admin_password}</admin-password>
+    </authentication>
+
+    <hostname>localhost</hostname>
+
+    <listen-socket>
+        <port>{port}</port>
+    </listen-socket>
+
+
+    <http-headers>
+        <header name="Access-Control-Allow-Origin" value="*" />
+    </http-headers>
+
+    <fileserve>1</fileserve>
+
+    <paths>
+        <basedir>{base_dir}</basedir>
+
+        <logdir>{log_dir}</logdir>
+        <webroot>{base_dir}/web</webroot>
+        <adminroot>{base_dir}/admin</adminroot>
+        <!-- <pidfile>/usr/share/icecast2/icecast.pid</pidfile> -->
+        <alias source="/" destination="/status.xsl"/>
+    </paths>
+
+    <logging>
+        <accesslog>access.log</accesslog>
+        <errorlog>error.log</errorlog>
+        <loglevel>3</loglevel>
+        <logsize>10000</logsize>
+    </logging>
+
+    <security>
+        <chroot>0</chroot>
+    </security>
+</icecast>

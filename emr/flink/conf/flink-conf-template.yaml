@@ -1,0 +1,70 @@
+jobmanager.rpc.address: {jobmanager_host}
+
+jobmanager.rpc.port: {jobmanager_port}
+
+rest.await-leader-timeout: 300000
+
+jobmanager.bind-host: 0.0.0.0
+
+jobmanager.memory.process.size: {jobmanager_memory_process_size}
+jobmanager.memory.jvm-metaspace.size: {jobmanager_memory_jvmmetaspace_size}
+
+taskmanager.bind-host: 0.0.0.0
+
+taskmanager.host: {local_ip}
+
+taskmanager.memory.process.size: {taskmanager_memory_process_size}
+
+taskmanager.memory.jvm-metaspace.size: {taskmanager_memory_jvmmetaspace_size}
+
+taskmanager.numberOfTaskSlots: {taskmanager_task_slots}
+
+parallelism.default: 1
+
+jobmanager.execution.failover-strategy: region
+
+rest.port: {rest_port}
+
+rest.address: localhost
+
+rest.bind-address: 0.0.0.0
+
+# retry
+restart-strategy.type: fixed-delay
+
+restart-strategy.fixed-delay.attempts: 100
+
+restart-strategy.fixed-delay.delay: 10s
+
+# spread
+cluster.evenly-spread-out-slots: true
+
+# akka / pekko
+pekko.ask.timeout: 5min
+
+# monitor
+metrics.reporter.promgateway.factory.class: {pushgateway_factory_class}
+metrics.reporter.promgateway.hostUrl: {pushgateway_address}
+metrics.reporter.promgateway.jobName: {pushgateway_jobname}
+metrics.reporter.promgateway.randomJobNameSuffix: true
+metrics.reporter.promgateway.deleteOnShutdown: false
+metrics.reporter.promgateway.groupingKey: k1=v1;k2=v2
+metrics.reporter.promgateway.interval: 60 SECONDS
+
+high-availability.type: {ha_type}
+high-availability.zookeeper.quorum: {ha_zookeeper_nodes}
+high-availability.zookeeper.path.root: {ha_zookeeper_root}
+high-availability.cluster-id: {ha_cluster_id}
+high-availability.storageDir: {ha_storage_dir}
+
+s3.access-key: {s3_access_key}
+s3.secret-key: {s3_secret_key}
+s3.endpoint: {s3_endpoint}
+s3.path.style.access: true
+
+state.backend.type: {state_backend_type}
+state.checkpoints.dir: {state_checkpoint_dir}
+
+execution.checkpointing.interval: {checkpoint_interval}
+
+classloader_resolve_order: {classloader_resolve_order}

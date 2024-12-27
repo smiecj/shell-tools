@@ -1,0 +1,7 @@
+#!/bin/bash
+
+export $(xargs < {clickhouse_home}/server.properties)
+
+clickhouse-client -m --host 127.0.0.1 --user ${default_user_name} --password=${default_user_password}
+
+# mysql -h127.0.0.1 -P${server_mysql_port} -u${default_user_name} -p${default_user_password}

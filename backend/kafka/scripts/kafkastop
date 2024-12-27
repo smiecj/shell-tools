@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source /etc/profile
+
+/opt/modules/kafka/bin/kafka-server-stop.sh

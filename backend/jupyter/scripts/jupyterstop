@@ -1,0 +1,5 @@
+ps -ef | grep '{jupyter_env_name}/bin' | grep -v grep | awk '{print $2}' | xargs --no-run-if-empty kill -9
+
+ps -ef | grep 'ipykernel' | grep -v grep | awk '{print $2}' | xargs --no-run-if-empty kill -9
+
+ps -ef | grep 'configurable-http-proxy' | grep -v grep | awk '{print $2}' | xargs --no-run-if-empty kill -9

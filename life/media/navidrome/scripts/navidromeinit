@@ -1,0 +1,24 @@
+#!/bin/bash
+set -eo pipefail
+
+pushd {navidrome_home}
+
+pushd conf
+
+export $(xargs < navidrome.properties)
+
+cp navidrome.toml.template navidrome.toml
+
+env_keys=`printenv | sed "s#=.*##g"`
+for current_env_key in ${env_keys[@]}
+do
+    sed -i "s#{${current_env_key}}#${!current_env_key}#g" navidrome.toml
+done
+
+popd
+
+# music and data folder
+mkdir -p ${music_folder}
+mkdir -p ${data_folder}
+
+popd

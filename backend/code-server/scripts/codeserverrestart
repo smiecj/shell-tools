@@ -1,5 +1,0 @@
-#!/bin/bash
-
-ps -ef | grep "{code_server_home}/lib/node" | grep -v grep | awk '{print $2}' | xargs -I {} bash -c "kill -9 {}"
-
-nohup {code_server_home}/bin/code-server --config {code_server_home}/config.yaml >> {code_server_home}/test.log 2>&1 &

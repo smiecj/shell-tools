@@ -1,0 +1,3 @@
+#!/bin/bash
+
+tail -f {doris_home}/fe/log/fe.log -n 100

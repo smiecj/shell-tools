@@ -1,0 +1,3 @@
+#!/bin/bash
+
+tail -f {prometheus_home}/prometheus.log

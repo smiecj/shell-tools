@@ -1,0 +1,9 @@
+#!/bin/bash
+
+export $(xargs < {doris_home}/conf/doris.properties)
+
+if [ -L /usr/local/bin/mysql ] || [ -f /usr/local/bin/mysql ]; then
+    export LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib64
+fi
+
+mysql -h127.0.0.1 -P${fe_query_port} -uroot -p${root_password}

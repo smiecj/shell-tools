@@ -1,5 +1,7 @@
 #!/bin/bash
 
-ps -ef | grep '{grafana_home}' | grep -v grep | awk '{print $2}' | xargs --no-run-if-empty kill -9
+grafanastop
 
-nohup {grafana_home}/bin/grafana-server --homepath "{grafana_home}" --config "{grafana_home}/conf/custom.ini" >> {grafana_home}/test.log 2>&1 &
+sleep 1
+
+grafanastart

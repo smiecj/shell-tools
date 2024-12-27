@@ -8,7 +8,10 @@ fi
 
 rm -rf ${HOME}/.oh-my-zsh
 
-${INSTALLER} -y install git
+find_git=`whereis git | sed 's#.*:##g'`
+if [ -z "${find_git}" ]; then
+    ${INSTALLER} -y install git
+fi
 
 ## install zsh (compile new version for theme powerlevel10k)
 pushd /tmp
@@ -53,7 +56,8 @@ git clone --depth=1 ${zsh_powerlevel10k_repo} ~/.oh-my-zsh/custom/themes/powerle
 ${INSTALLER} -y install wget
 ~/.oh-my-zsh/custom/themes/powerlevel10k/gitstatus/install
 
-cp ~/.oh-my-zsh/custom/themes/powerlevel10k/example/p10k.zh ~/.p10k.zsh
+# cp ~/.oh-my-zsh/custom/themes/powerlevel10k/example/p10k.zh ~/.p10k.zsh
+cp ~/.oh-my-zsh/custom/themes/powerlevel10k/config/p10k-robbyrussell.zsh ~/.p10k.zsh
 
 echo "[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh" >> ~/.zshrc
 

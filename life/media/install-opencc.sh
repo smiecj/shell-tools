@@ -7,6 +7,9 @@ cd /tmp
 cmake_has_installed=`cmake --version || true`
 if [ -n "${cmake_has_installed}" ]; then
     echo "cmake has installed"
+    if [ -f /usr/local/bin/cmake ]; then
+        export LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib64
+    fi
 else
     echo "cmake has not installed!"
     exit 1

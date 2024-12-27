@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export $(xargs < {icecast_home}/icecast.properties)
+
+tail -f ${log_dir}/error.log -n 100

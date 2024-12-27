@@ -1,0 +1,7 @@
+#!/bin/bash
+
+export $(xargs < {zookeeper_home}/conf/zookeeper.properties)
+
+source /etc/profile
+
+{zookeeper_home}/bin/zkCli.sh -server 127.0.0.1:${port}

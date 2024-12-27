@@ -8,19 +8,10 @@ pushd $home_path
 go_home=${modules_home}/golang
 go_repo_home=${repo_home}/go
 
-system_arch=`uname -p`
-
-arch=`uname -p`
-if [ "x86_64" == "${arch}" ]; then
-    arch="amd64"
-elif [ "aarch64" == "${arch}" ]; then
-    arch="arm64"
-fi
-
 rm -rf ${go_home} && mkdir -p ${go_home} && mkdir -p ${go_repo_home}
-go_pkg=go${go_version}.linux-${arch}.tar.gz
+go_pkg=go${go_version}.linux-${ARCH_SHORT}.tar.gz
 go_pkg_download_url=${go_pkg_repo}/${go_pkg}
-cd ${go_home} && curl -LO ${go_pkg_download_url} && tar -xzvf ${go_pkg} && rm ${go_pkg} && \
+cd ${go_home} && curl -LO ${go_pkg_download_url} && tar -xzvf ${go_pkg} && rm ${go_pkg}
 mv go/* ./ && rm -r go
 
 ## profile

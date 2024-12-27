@@ -1,0 +1,7 @@
+User = "{admin_user}"
+Password = "{admin_password}"
+MusicFolder = "{music_folder}"
+DataFolder = "{data_folder}"
+Port = {port}
+ScanInterval = "{scan_interval}"
+SessionTimeout = "{session_timeout}"

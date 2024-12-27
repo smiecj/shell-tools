@@ -1,0 +1,7 @@
+#!/bin/bash
+
+navidromestop
+
+sleep 1
+
+navidromestart

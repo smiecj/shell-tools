@@ -1,0 +1,7 @@
+#!/bin/bash
+
+dorisbestop
+
+sleep 2
+
+dorisbestart

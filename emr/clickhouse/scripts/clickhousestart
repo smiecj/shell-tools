@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# systemctl restart clickhouse-server
+
+pushd /home/clickhouse
+
+rm -f /var/run/clickhouse-server/clickhouse-server.pid
+su clickhouse -c "nohup /usr/bin/clickhouse-server --config=/etc/clickhouse-server/config.xml --pid-file=/var/run/clickhouse-server/clickhouse-server.pid > /dev/null 2>&1 &"
+
+popd
